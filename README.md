@@ -3,7 +3,7 @@
 ## System Components:
 
 1. User Authentication and Authorization:
-    -Use a secure authentication mechanism (e.g., username/password authentication)      for program committee members to log in.
+    - Use a secure authentication mechanism (e.g., username/password authentication)      for program committee members to log in.
    - Implement role-based access control to ensure that only authorized members can          access the review interface.
    - If the login failed, give an error message saying “invalid”.
 
