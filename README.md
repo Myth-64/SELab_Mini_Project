@@ -26,3 +26,5 @@
 
 6. Decision Making:
    - Make decisions on whether to accept, reject, or request revisions for each paper based on the reviews submitted.
+   
+___   
