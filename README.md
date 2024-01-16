@@ -57,6 +57,7 @@ The paper conferencing website is designed to streamline the conference paper su
 
 - Use a secure authentication mechanism for program committee members.
 - Implement username/password authentication.
+- Enable Social Network Authentication.
 
 #### 2. Role-Based Access Control
 
