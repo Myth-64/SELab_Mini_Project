@@ -100,7 +100,6 @@ The paper conferencing website is designed to streamline the conference paper su
 #### 1. Reviewer Notifications
 
 - Send notifications to assigned reviewers with updates, discussions, and deadlines.
-- Implement a rating or scoring system if necessary.
 - Include fields for strengths, weaknesses, and suggestions.
 
 ### 3.6 Decision Making
