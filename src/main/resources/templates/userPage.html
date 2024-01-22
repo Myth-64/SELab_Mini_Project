@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Landing Page</title>
+    <link rel="stylesheet" th:href="@{/userPage.css}">
+</head>
+<body>
+
+<div class="landing-container">
+    <header>
+        <h1>Welcome, [Username]!</h1>
+        <p>Explore and enjoy your personalized dashboard.</p>
+    </header>
+    <section class="features">
+        <h2>Features</h2>
+        <ul>
+            <li>Personalized content</li>
+            <li>Dashboard overview</li>
+            <li>Account settings</li>
+        </ul>
+    </section>
+    <section class="actions">
+        <button>View Dashboard</button>
+        <a href="/logout">Logout</a>
+    </section>
+</div>
+
+</body>
+</html>
