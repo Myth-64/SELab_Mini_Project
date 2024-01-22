@@ -48,6 +48,19 @@ The paper conferencing website is designed to streamline the conference paper su
 #### 6. Decision Making:
 
 - Allow program committee members to make decisions on papers (accept, reject, or request revisions) based on reviews submitted.
+  
+#### 7.Landing page:
+
+- Keynote speakers:
+Create a dedicated section on the landing page to showcase information about keynote speakers.
+Include a visually appealing layout with images, brief bios, and affiliations of each keynote speaker.
+
+- Schedule:
+Display detailed information about each session, including the date and time.
+Include a brief overview of the topics or themes that each keynote speaker will cover.
+
+- Subject-Based Tracks:
+Implement a system for organizing conference papers into subject-based tracks to facilitate categorization and navigation.
 
 ## 3. Functional Requirements
 
@@ -138,3 +151,5 @@ The paper conferencing website is designed to streamline the conference paper su
 
 ## 5. Conclusion
 This Software Requirements Specification provides a comprehensive outline of the functional and non-functional requirements for the development of the paper conferencing website. These requirements serve as a foundation for the design, development, and testing phases of the project.
+
+
