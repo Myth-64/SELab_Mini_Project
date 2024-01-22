@@ -54,7 +54,8 @@ public class SecurityConfiguration {
         .httpBasic(Customizer.withDefaults())
         .formLogin(login -> login
                    .defaultSuccessUrl("/user",true)
-                   .permitAll());
+                   .permitAll())
+        .logout((logout) -> logout.logoutSuccessUrl("/"));
         return http.build();
     }
 }
