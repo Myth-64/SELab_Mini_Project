@@ -29,7 +29,7 @@ public class SecurityConfiguration {
         http
         .authorizeHttpRequests((authz) -> authz
             .requestMatchers("/user").hasRole("USER")
-            .requestMatchers("/").permitAll()
+            .requestMatchers("/","/img/**").permitAll()
             .requestMatchers("/login").permitAll()
             .anyRequest().authenticated()        
         )
