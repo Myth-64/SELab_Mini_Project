@@ -44,6 +44,24 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.23</version> 
 		</dependency>
+		<dependency>														<!-- JDBC -->
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<dependency>														<!-- JPA -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.30</version>
+			<scope>provided</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
