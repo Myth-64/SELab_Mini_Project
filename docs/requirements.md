@@ -99,8 +99,7 @@ Include a visually appealing layout with images, brief bios, and affiliations of
 
 ### 3.4 Paper Info Interface
 
-- Provide a graphical interface to view details of each paper.
-- Display paper title, paper number, authors and paper tags (subject).
+- Provide a graphical interface to view  paper title, paper number, authors and paper tags (subject).
 - Provide an option to filter papers based on review status(Submitted,Assigned,Reviewed,Accepted,Rejected).
 
 ### 3.5 Paper Review Interface
