@@ -26,12 +26,12 @@ const SideBar = ({ openSidebarToggle, OpenSidebar }) => {
       <ul className="sidebar-list">
         <li className="sidebar-list-item">
           <a href="">
-            <BsGrid1X2Fill className="icon" /> Paper Info
+            <BsGrid1X2Fill className="icon" /> Home
           </a>
         </li>
         <li className="sidebar-list-item">
           <a href="">
-            <BsFillArchiveFill className="icon" /> Paper Details
+            <BsFillArchiveFill className="icon" /> Paper Info
           </a>
         </li>
 
