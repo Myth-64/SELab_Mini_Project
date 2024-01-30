@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Landing Page</title>
-    <link rel="stylesheet" th:href="@{/userPage.css}">
-</head>
-<body>
+  <head>
+    <script type="module">
+import RefreshRuntime from "/@react-refresh"
+RefreshRuntime.injectIntoGlobalHook(window)
+window.$RefreshReg$ = () => {}
+window.$RefreshSig$ = () => (type) => type
+window.__vite_plugin_react_preamble_installed__ = true
+</script>
 
-<div class="landing-container">
-    <header>
-        <h1>Welcome, [Username]!</h1>
-        <p>Explore and enjoy your personalized dashboard.</p>
-    </header>
-    <section class="features">
-        <h2>Features</h2>
-        <ul>
-            <li>Personalized content</li>
-            <li>Dashboard overview</li>
-            <li>Account settings</li>
-        </ul>
-    </section>
-    <section class="actions">
-        <button>View Dashboard</button>
-        <a href="/logout">Logout</a>
-    </section>
-</div>
+    <script type="module" src="/@vite/client"></script>
 
-</body>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+    />
+    <!-- or -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/index.css}"
+    />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" th:src="@{/main.js}"></script>
+  </body>
 </html>
