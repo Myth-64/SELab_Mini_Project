@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -20,12 +19,16 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Review {
 
     @Id
-    private Long paperId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long reviewId;
 
-    @Id
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name="paper_id", nullable=false)
+    private Paper paper;
 
-    private String title;
+    @ManyToOne
+    @JoinColumn(name="author_id", nullable=false)
+    private User author;
 
     private String reviewDescription;
 
@@ -34,4 +37,7 @@ public class Review {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime deadline;
 
+    @ManyToOne
+    @JoinColumn(name="assignee_id", nullable=false)
+    private User assignedBy;
 }

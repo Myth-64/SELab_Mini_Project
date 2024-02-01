@@ -31,6 +31,14 @@ public class User {
     @JoinTable(name = "users_roles",
         joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
-    )
+    )    
     private Set<Role> roles;
+
+    @ManyToMany
+    @JoinTable(
+        name="userTracks",
+        joinColumns = @JoinColumn(name="Id"),
+        inverseJoinColumns = @JoinColumn(name="trackId")
+    )
+    Set<Track> tracks;
 }
