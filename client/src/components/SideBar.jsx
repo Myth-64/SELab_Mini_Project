@@ -36,7 +36,7 @@ const SideBar = ({ openSidebarToggle, OpenSidebar }) => {
         </li>
 
         <li className="sidebar-list-item logout">
-          <a href="">
+          <a href="/">
             <BsFillGearFill className="icon" /> Logout
           </a>
         </li>

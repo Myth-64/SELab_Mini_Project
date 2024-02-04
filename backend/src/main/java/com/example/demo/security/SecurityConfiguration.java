@@ -36,8 +36,9 @@ public class SecurityConfiguration {
         .httpBasic(Customizer.withDefaults())
         .csrf(AbstractHttpConfigurer::disable)
         .formLogin(login -> login
-                   .defaultSuccessUrl("/user",true)
-                   .permitAll())
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/user",true)
+                    .permitAll())
         .logout((logout) -> logout.logoutSuccessUrl("/"));
         return http.build();
     }

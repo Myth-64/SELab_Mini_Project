@@ -5,7 +5,7 @@ const Login = () => {
     <div class="MainElement">
       <div class="wrapper">
         <header>Login Form</header>
-        <form action="#">
+        <form action="/login" method="post">
           <div class="field email">
             <div class="input-area">
               <input type="text" placeholder="Email Address" />
@@ -27,9 +27,9 @@ const Login = () => {
           </div>
           <input type="submit" value="Login" />
         </form>
-        <div class="sign-txt">
+        {/* <div class="sign-txt">
           Not yet member? <a href="#">Signup now</a>
-        </div>
+        </div> */}
       </div>
     </div>
   );
