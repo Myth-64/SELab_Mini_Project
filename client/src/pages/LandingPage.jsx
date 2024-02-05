@@ -52,7 +52,7 @@ const LandingPage = () => {
               <h2 style={{ padding: '2rem', fontSize: '3rem' }}>Heisenberg</h2>
               <p style={{ padding: '2rem', width: '40vw' }}>
                 Professor Heisenberg,a well established chemist and a well known
-                teacher famous for his
+                teacher famous for his cooking skills.
               </p>
             </div>
           </div>
