@@ -22,5 +22,11 @@ public class PaperDaoImp implements PaperDao {
       TypedQuery<Paper> query = entityManager.createQuery("from Paper", Paper.class);
       return query.getResultList();
    }
+
+   @Override
+   public List<Paper> findStatus(String status) {
+      TypedQuery<Paper> query = entityManager.createQuery(String.format("from Paper WHERE status=%s",status), Paper.class);
+      return query.getResultList();
+   }
 }
 
