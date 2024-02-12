@@ -14,8 +14,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import org.springframework.web.bind.annotation.PathVariable;
+
 /**
  * Controller class responsible for handling HTTP requests related to Paper entities.
  */
@@ -43,11 +43,10 @@ public class PaperRestController {
     public List<Paper> findByStatus(@PathVariable String status) {
         return paperRepository.findByStatus(status);
     }
-
+  
     @Operation(summary = "findByAuthor", description="Returns the list of all papers submitted by the author with given authorId")
     @GetMapping("/author={authorId}")
     public List<Paper> findByAuthor(@PathVariable Long authorId) {
         return paperRepository.findByAuthor(authorId);
     }
-    
 }
