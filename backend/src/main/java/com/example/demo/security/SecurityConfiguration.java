@@ -29,8 +29,10 @@ public class SecurityConfiguration {
         http
         .authorizeHttpRequests((authz) -> authz
             .requestMatchers("/user").hasRole("USER")
-            .requestMatchers("/","/img/**","/api/papers").permitAll()
+            .requestMatchers("/","/img/**").permitAll()
             .requestMatchers("/login").permitAll()
+            .requestMatchers("/v3/api-docs/**","/swagger-ui/**").permitAll()                          // For Swagger
+            .requestMatchers("/api/**").permitAll()                                                   // For API
             .anyRequest().authenticated()        
         )
         .httpBasic(Customizer.withDefaults())
