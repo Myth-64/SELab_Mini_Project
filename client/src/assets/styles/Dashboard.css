@@ -1,18 +1,11 @@
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #fbf9f1;
-  color: #342e37;
-  font-family: 'Montserrat', sans-serif;
-}
-::selection {
-  color: #342e37;
-  background-color: none;
-}
 .outlet {
-  grid-area: outlet;
-  width: calc(100vw - 260px);
+  .dashboard-page {
+    width: 90vw;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
 }
+
 .icon {
   vertical-align: middle;
   line-height: 1px;
@@ -37,16 +30,23 @@ body {
 
 .grid-container {
   display: grid;
-  grid-template-columns: 260px 1fr 1fr 1fr;
+  /* grid-template-columns: 260px 1fr 1fr 1fr;
   grid-template-rows: 0.2fr 3fr;
   grid-template-areas:
     'sidebar header header header'
-    'sidebar outlet outlet outlet';
-  height: 100vh;
+    'sidebar main main main';
+  height: 100vh; */
+  grid-template-columns: 1fr;
+}
+
+.menu-icon {
+  display: none;
 }
 
 /* Header  */
 .header {
+  position: sticky;
+  top: 0;
   grid-area: header;
   height: 60px;
   display: flex;
@@ -55,16 +55,16 @@ body {
   padding: 0 30px 0 30px;
   box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
 }
-
-.menu-icon {
-  display: none;
-}
 /* End Header  */
 
 /* Sidebar  */
 #sidebar {
   grid-area: sidebar;
+  position: fixed;
+  top: 0;
+  left: 0;
   height: 100%;
+  width: 20vw;
   background-color: #fbf9f1;
   overflow-y: auto;
   transition: all 0.5s;
@@ -125,70 +125,6 @@ body {
 }
 
 /* End Sidebar  */
-
-/* Main  */
-.main-container {
-  /* grid-area: main; */
-  overflow-y: auto;
-  padding: 20px 20px;
-  color: rgba(255, 255, 255, 0.95);
-}
-
-.main-title {
-  display: flex;
-  justify-content: space-between;
-}
-
-.main-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 20px;
-  margin: 15px 0;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 8px 15px;
-  border-radius: 5px;
-}
-
-.card:first-child {
-  background-color: #2962ff;
-}
-
-.card:nth-child(2) {
-  background-color: #ff6d00;
-}
-
-.card:nth-child(3) {
-  background-color: #2e7d32;
-}
-
-.card:nth-child(4) {
-  background-color: #d50000;
-}
-
-.card-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.card-inner > .card_icon {
-  font-size: 25px;
-}
-
-.charts {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-top: 60px;
-  height: 300px;
-}
-
-/* End Main  */
 
 /* Medium <= 992px */
 
