@@ -32,10 +32,10 @@ public class LoginController {
      *
      * @return The login page view.
      */
-    @GetMapping("/login")
-    public String getLogin() {
-        return "login";
-    }
+//    "/login")
+//    public String getLogin() {
+//        return "login";
+//    }
 
     @PostMapping("/authenticate")
     public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
