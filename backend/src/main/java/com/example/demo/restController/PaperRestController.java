@@ -1,7 +1,6 @@
 package com.example.demo.restController;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.model.Paper;
 import com.example.demo.repository.PaperRepository;
@@ -12,14 +11,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * Controller class responsible for handling HTTP requests related to Paper entities.
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/api/papers")
 public class PaperRestController {
 
@@ -33,14 +30,14 @@ public class PaperRestController {
     }
 
     @Operation(summary = "findById", description="Returns the paper with the given ID")
-    @GetMapping("/id={id}")
-    public Optional<Paper> findById(@PathVariable Long id) {
+    @GetMapping("/id")
+    public Optional<Paper> findById(@RequestParam Long id) {
         return paperRepository.findById(id);
     }
 
     @Operation(summary = "findByStatus", description="Returns the list of all papers with the given status")
-    @GetMapping("/status={status}")
-    public List<Paper> findByStatus(@PathVariable String status) {
+    @GetMapping("/status")
+    public List<Paper> findByStatus(@RequestParam  String status) {
         return paperRepository.findByStatus(status);
     }
   
