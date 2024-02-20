@@ -7,10 +7,6 @@
   },
   "servers": [
     {
-      "url": "https://virtserver.swaggerhub.com/MITHUNRAJM13/SELab_Mini_Project/1.0.0",
-      "description": "SwaggerHub API Auto Mocking"
-    },
-    {
       "url": "http://localhost:8080/api",
       "description": "Localhost"
     }
@@ -201,6 +197,195 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/Paper"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/paper/accept": {
+      "post": {
+        "tags": [
+          "Papers"
+        ],
+        "description": "Change the status of paper with given paperId to ACCEPTED",
+        "operationId": "acceptPaper",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/paper/reject": {
+      "post": {
+        "tags": [
+          "Papers"
+        ],
+        "description": "Change the status of paper with given paperId to REJECTED",
+        "operationId": "rejectPaper",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/review": {
+      "get": {
+        "tags": [
+          "Reviews"
+        ],
+        "description": "Returns details of all reviews",
+        "operationId": "findAllReviews",
+        "responses": {
+          "200": {
+            "description": "All the reviews",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Review"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/review/findByPaper": {
+      "get": {
+        "tags": [
+          "Reviews"
+        ],
+        "description": "Returns details of all reviews of a paper with given paperId",
+        "operationId": "findReviewsByPaper",
+        "parameters": [
+          {
+            "name": "paperId",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All the reviews of the given paper",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Review"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/review/findByReviewer": {
+      "get": {
+        "tags": [
+          "Reviews"
+        ],
+        "description": "Returns details of all reviews of a paper given by the reviewer with the given id",
+        "operationId": "findReviewsByReviewer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All the reviews given by the reviewer",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Review"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/review/findByAssignee": {
+      "get": {
+        "tags": [
+          "Reviews"
+        ],
+        "description": "Returns details of all reviews of a paper assigned by the program committee member with the given id",
+        "operationId": "findReviewsByAssignee",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All the reviews assigned by the program committee member",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Review"
                   }
                 }
               }
