@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("api/users")
@@ -29,8 +30,8 @@ public class UserRestController {
     }
 
     @Operation(summary = "findByUsername", description="Return the details of the user with the given username")
-    @GetMapping("/username={username}")
-    public Optional<User> findByUsername(@PathVariable String username){
+    @GetMapping("/findByUsername")
+    public Optional<User> findByUsername(@RequestParam String username){
         return userRepository.findByUsername(username);
     }
 }
