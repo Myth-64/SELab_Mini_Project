@@ -1,8 +1,8 @@
 package com.example.demo.restController;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.*;
+
 
 import com.example.demo.model.Paper;
 import com.example.demo.repository.PaperRepository;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * Controller class responsible for handling HTTP requests related to Paper entities.
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/api/papers")
 public class PaperRestController {
 
@@ -41,6 +42,7 @@ public class PaperRestController {
     @Operation(summary = "findByStatus", description="Returns the list of all papers with the given status")
     @GetMapping("/findByStatus")
     public List<Paper> findByStatus(@RequestParam String status) {
+
         return paperRepository.findByStatus(status);
     }
   

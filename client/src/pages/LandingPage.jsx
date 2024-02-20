@@ -6,10 +6,7 @@ import kevin from '../assets/image/second.jpeg';
 import Login from '../components/Login';
 
 const LandingPage = () => {
-  const navigate = useNavigate();
-  const SubmitDetails = () => {
-    navigate('/login');
-  };
+ 
 
   return (
     <div>
@@ -52,7 +49,7 @@ const LandingPage = () => {
               <h2 style={{ padding: '2rem', fontSize: '3rem' }}>Heisenberg</h2>
               <p style={{ padding: '2rem', width: '40vw' }}>
                 Professor Heisenberg,a well established chemist and a well known
-                teacher famous for his cooking skills.
+                teacher famous for his
               </p>
             </div>
           </div>

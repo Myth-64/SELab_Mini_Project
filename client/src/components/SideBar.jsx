@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../assets/styles/SideBar.css';
 import {
   BsCart3,
   BsGrid1X2Fill,
@@ -10,6 +10,7 @@ import {
   BsMenuButtonWideFill,
   BsFillGearFill,
 } from 'react-icons/bs';
+import { NavLink } from 'react-router-dom';
 const SideBar = ({ openSidebarToggle, OpenSidebar }) => {
   return (
     <aside
@@ -25,20 +26,47 @@ const SideBar = ({ openSidebarToggle, OpenSidebar }) => {
 
       <ul className="sidebar-list">
         <li className="sidebar-list-item">
-          <a href="">
-            <BsGrid1X2Fill className="icon" /> Home
-          </a>
+          <div>
+            <NavLink
+              to={'.'}
+              key={'Home'}
+              className="nav-link"
+              end
+              style={{ color: 'inherit', textDecoration: 'inherit' }}
+            >
+              <BsGrid1X2Fill className="icon" /> {'Home'}
+            </NavLink>
+          </div>
         </li>
         <li className="sidebar-list-item">
-          <a href="">
-            <BsFillArchiveFill className="icon" /> Paper Info
-          </a>
+          <div>
+            <NavLink
+              to={'paperinfo'}
+              key={'paperinfo'}
+              className="nav-link"
+              end
+              style={{ color: 'inherit', textDecoration: 'inherit' }}
+            >
+              <span>
+                <BsFillArchiveFill className="icon" />
+              </span>
+              Paper Info
+            </NavLink>
+          </div>
         </li>
 
         <li className="sidebar-list-item logout">
-          <a href="/">
-            <BsFillGearFill className="icon" /> Logout
-          </a>
+          <div>
+            <NavLink
+              to={'logout'}
+              key={'logout'}
+              className="nav-link"
+              end
+              style={{ color: 'inherit', textDecoration: 'inherit' }}
+            >
+              <BsFillGearFill className="icon" /> Logout
+            </NavLink>
+          </div>
         </li>
       </ul>
     </aside>

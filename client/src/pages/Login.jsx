@@ -1,35 +1,61 @@
-import React from "react";
-import "../assets/styles/Login.css";
+import React, { useContext, useState } from 'react';
+import '../assets/styles/Login.css';
+import axios from 'axios';
+import { redirect, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../auth/AuthContext';
+
 const Login = () => {
+  const { user, setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const credentials = Object.fromEntries(formData);
+    try {
+      const resp = await axios.post(
+        'http://localhost:8080/api/authenticate',
+        credentials
+      );
+      toast.success('login success');
+      localStorage.setItem('token', resp.data);
+      setUser(credentials.username);
+      console.log('yes');
+      navigate('/dashboard');
+    } catch (error) {
+      toast.error('Invalid Credentials');
+    }
+  };
+
   return (
-    <div class="MainElement">
-      <div class="wrapper">
+    <div className="MainElement">
+      <div className="wrapper">
         <header>Login Form</header>
-        <form action="/login" method="post">
-          <div class="field email">
-            <div class="input-area">
-              <input type="text" placeholder="Email Address" />
-              <i class="icon fas fa-envelope"></i>
-              <i class="error error-icon fas fa-exclamation-circle"></i>
+        <form onSubmit={handleSubmit} id="loginform">
+          <div className="field email">
+            <div className="input-area">
+              <input type="text" placeholder="username" name="username" />
+              <i className="icon fas fa-envelope"></i>
+              <i className="error error-icon fas fa-exclamation-circle"></i>
             </div>
-            <div class="error error-txt">Email can't be blank</div>
+            <div className="error error-txt">Email can't be blank</div>
           </div>
-          <div class="field password">
-            <div class="input-area">
-              <input type="password" placeholder="Password" />
-              <i class="icon fas fa-lock"></i>
-              <i class="error error-icon fas fa-exclamation-circle"></i>
+          <div className="field password">
+            <div className="input-area">
+              <input type="password" placeholder="password" name="password" />
+              <i className="icon fas fa-lock"></i>
+              <i className="error error-icon fas fa-exclamation-circle"></i>
             </div>
-            <div class="error error-txt">Password can't be blank</div>
+            <div className="error error-txt">Password can't be blank</div>
           </div>
-          <div class="pass-txt">
+          <div className="pass-txt">
             <a href="#">Forgot password?</a>
           </div>
           <input type="submit" value="Login" />
         </form>
-        {/* <div class="sign-txt">
+        <div className="sign-txt">
           Not yet member? <a href="#">Signup now</a>
-        </div> */}
+        </div>
       </div>
     </div>
   );

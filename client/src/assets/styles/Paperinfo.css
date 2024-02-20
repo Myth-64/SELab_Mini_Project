@@ -1,0 +1,33 @@
+.paper-maincontainer {
+  padding: 4rem 4rem;
+  width: 100%;
+}
+.paperinfobox {
+  display: flex;
+  margin: 1.5rem;
+  justify-content: space-between;
+  box-shadow: 0 0 5px 5px grey;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.green {
+  background-color: green;
+}
+.red {
+  background-color: red;
+}
+.yellow {
+  background-color: yellow;
+}
+.box {
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+}
+.paperinfo-header {
+  display: flex;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 90%;
+  justify-content: space-between;
+}

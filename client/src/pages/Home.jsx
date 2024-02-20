@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import {
   BsFillArchiveFill,
@@ -5,6 +6,21 @@ import {
   BsPeopleFill,
   BsFillBellFill,
 } from 'react-icons/bs';
+
+var accepted_count;
+export const loader = async () => {
+  const data = { status: 'ACCEPTED' };
+  try {
+    const resp = await axios.get('http://localhost:8080/api/papers/status', {
+      params: data,
+    });
+    accepted_count = resp.length;
+    console.log(resp.data);
+    return resp.data;
+  } catch (error) {
+    return error;
+  }
+};
 
 function Home() {
   const data = [
@@ -54,38 +70,34 @@ function Home() {
 
   return (
     <main className="main-container">
-      <div className="main-title">
-        <h3>DASHBOARD</h3>
-      </div>
-
       <div className="main-cards">
         <div className="card">
           <div className="card-inner">
             <h3>Submitted</h3>
             <BsFillArchiveFill className="card_icon" />
           </div>
-          <h1>300</h1>
+          <h1>3</h1>
         </div>
         <div className="card">
           <div className="card-inner">
             <h3>Pending</h3>
             <BsFillGrid3X3GapFill className="card_icon" />
           </div>
-          <h1>12</h1>
+          <h1>1</h1>
         </div>
         <div className="card">
           <div className="card-inner">
             <h3>Accepted</h3>
             <BsPeopleFill className="card_icon" />
           </div>
-          <h1>33</h1>
+          <h1>3</h1>
         </div>
         <div className="card">
           <div className="card-inner">
             <h3>Rejected</h3>
             <BsFillBellFill className="card_icon" />
           </div>
-          <h1>42</h1>
+          <h1>2</h1>
         </div>
       </div>
     </main>

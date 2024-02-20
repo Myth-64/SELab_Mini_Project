@@ -1,12 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  // return <h2 className="login-box">Login</h2>;
-  return <div className="login-box">
-    <a href="/login" >
+  const navigate = useNavigate();
+  const Submitbutton = () => {
+    navigate('/login');
+  };
+  return (
+    <button className="login-box" onClick={Submitbutton}>
       Login
-    </a>
-  </div>;
+    </button>
+  );
 };
 
 export default Login;
