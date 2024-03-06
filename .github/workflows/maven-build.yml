@@ -24,8 +24,8 @@ jobs:
         cd backend
         mvn -B package
 
-    # Run tests
-    - name: Run Tests
-      run: |
-        cd backend
-        mvn test
+    # # Run tests
+    # - name: Run Tests
+    #   run: |
+    #     cd backend
+    #     mvn test
