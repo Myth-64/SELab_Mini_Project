@@ -12,6 +12,37 @@
     }
   ],
   "paths": {
+    "/authenticate":{
+    "post": {
+      "tags": [
+          "Login"
+      ],
+      "operationId": "authenticateAndGetToken",
+      "requestBody": {
+          "content": {
+              "application/json": {
+                  "schema": {
+                      "$ref": "#/components/schemas/AuthRequest"
+                  }
+              }
+          },
+          "required": true
+      },
+      "responses": {
+          "200": {
+              "description": "OK",
+              "content": {
+                  "*/*": {
+                      "schema": {
+                          "type": "string"
+                      }
+                  }
+              }
+          }
+      }
+  }
+},
+
     "/users": {
       "get": {
         "tags": [
@@ -614,7 +645,18 @@
             "type": "string"
           }
         }
-      }
+      },
+      "AuthRequest": {
+        "type": "object",
+        "properties": {
+            "username": {
+                "type": "string"
+            },
+            "password": {
+                "type": "string"
+            }
+        }
+    }
     }
   }
 }
