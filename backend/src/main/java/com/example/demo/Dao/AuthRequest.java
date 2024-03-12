@@ -1,7 +1,6 @@
 package com.example.demo.Dao;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 

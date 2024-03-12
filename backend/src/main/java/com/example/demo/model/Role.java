@@ -3,9 +3,7 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 /**
  * <ul>
  * <li>This class represents a Role in the system</li>.
