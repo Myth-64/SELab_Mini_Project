@@ -43,7 +43,7 @@ public class UserRestController {
             return ResponseEntity.ok(user);
         }
         else{
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.noContent().build();
         }
     }
 }

@@ -72,13 +72,13 @@ public class UserRestControllerTest {
 
     @Test
     public void findByUsername_TestForEmpty(){
-        Optional<User> mockResult=Optional.of(user1);
+        Optional<User> mockResult=Optional.empty();
 
         Mockito.when(userRepository.findByUsername(user1.getName())).thenReturn(mockResult);
 
-        ResponseEntity<Optional<User>> currentResult=userRestController.findByUsername(user2.getName());
+        ResponseEntity<Optional<User>> currentResult=userRestController.findByUsername(user1.getName());
 
-        assertEquals(currentResult,ResponseEntity.notFound().build());
+        assertEquals(currentResult,ResponseEntity.noContent().build());
     }
 
     @Test

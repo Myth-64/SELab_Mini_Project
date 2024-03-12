@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
@@ -29,26 +30,49 @@ public class PaperRestController {
 
     @Operation(summary = "findAll", description="Return the list of all papers")
     @GetMapping("")
-    public List<Paper> findAll() {
-        return paperRepository.findAll();
+    public ResponseEntity<List<Paper>> findAll() {
+        List<Paper> paperList=paperRepository.findAll();
+        if(paperList.size()==0){
+            return ResponseEntity.noContent().build();
+        }
+        else{
+            return ResponseEntity.ok(paperList);
+        }
     }
 
     @Operation(summary = "findById", description="Returns the paper with the given ID")
     @GetMapping("/findById")
-    public Optional<Paper> findById(@RequestParam Long id) {
-        return paperRepository.findById(id);
+    public ResponseEntity<Optional<Paper>> findById(@RequestParam Long id) {
+        Optional<Paper> paper=paperRepository.findById(id);
+        if(paper.isPresent()){
+            return ResponseEntity.ok(paper);
+        }
+        else{
+            return ResponseEntity.noContent().build();
+        }
     }
 
     @Operation(summary = "findByStatus", description="Returns the list of all papers with the given status")
     @GetMapping("/findByStatus")
-    public List<Paper> findByStatus(@RequestParam String status) {
-
-        return paperRepository.findByStatus(status);
+    public ResponseEntity<List<Paper>> findByStatus(@RequestParam String status) {
+        List<Paper> paperList=paperRepository.findByStatus(status);
+        if(paperList.size()==0){
+            return ResponseEntity.noContent().build();
+        }
+        else{
+            return ResponseEntity.ok(paperList);
+        }
     }
   
     @Operation(summary = "findByAuthor", description="Returns the list of all papers submitted by the author with given authorId")
     @GetMapping("/findByAuthor")
-    public List<Paper> findByAuthor(@RequestParam Long authorId) {
-        return paperRepository.findByAuthor(authorId);
+    public ResponseEntity<List<Paper>> findByAuthor(@RequestParam Long authorId) {
+        List<Paper> paperList=paperRepository.findByAuthor(authorId);
+        if(paperList.size()==0){
+            return ResponseEntity.noContent().build();
+        }
+        else{
+            return ResponseEntity.ok(paperList);
+        }
     }
 }

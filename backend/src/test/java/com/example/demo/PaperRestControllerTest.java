@@ -15,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.http.ResponseEntity;
 
 import com.example.demo.model.Paper;
 import com.example.demo.model.Track;
@@ -44,7 +45,17 @@ public class PaperRestControllerTest {
     }
 
     @Test
-    public void findAll_Test(){
+    public void findAll_TestForEmpty(){
+        List<Paper> mockResult=new ArrayList<>();
+
+        Mockito.when(paperRepository.findAll()).thenReturn(mockResult);
+
+        ResponseEntity<List<Paper>> currentResult=paperRestController.findAll();
+
+        assertEquals(currentResult,ResponseEntity.noContent().build());
+    }
+    @Test
+    public void findAll_TestForNonEmpty(){
         List<Paper> mockResult=new ArrayList<>();
         mockResult.add(paper1);
         mockResult.add(paper2);
@@ -52,36 +63,66 @@ public class PaperRestControllerTest {
 
         Mockito.when(paperRepository.findAll()).thenReturn(mockResult);
 
-        List<Paper> currentResult=paperRestController.findAll();
+        ResponseEntity<List<Paper>> currentResult=paperRestController.findAll();
 
-        assertEquals(currentResult,mockResult);
+        assertEquals(currentResult.getBody(),mockResult);
     }
 
     @Test
-    public void findById_Test(){
+    public void findById_TestForEmpty(){
+        Optional<Paper> mockResult=Optional.empty();
+        
+        Mockito.when(paperRepository.findById(paper1.getPaperId())).thenReturn(mockResult);
+
+        ResponseEntity<Optional<Paper>> currentResult=paperRestController.findById(paper1.getPaperId());
+
+        assertEquals(ResponseEntity.noContent().build(),currentResult);
+    }
+    @Test
+    public void findById_TestForNonEmpty(){
         Optional<Paper> mockResult=Optional.of(paper1);
         
         Mockito.when(paperRepository.findById(paper1.getPaperId())).thenReturn(mockResult);
 
-        Optional<Paper> currentResult=paperRestController.findById(paper1.getPaperId());
+        ResponseEntity<Optional<Paper>> currentResult=paperRestController.findById(paper1.getPaperId());
 
-        assertEquals(mockResult,currentResult);
+        assertEquals(mockResult,currentResult.getBody());
     }
 
     @Test
-    public void findByStatus_Test(){
+    public void findByStatus_TestForEmpty(){
+        List<Paper> mockResult=new ArrayList<>();
+
+        Mockito.when(paperRepository.findByStatus(paper2.getStatus())).thenReturn(mockResult);
+
+        ResponseEntity<List<Paper>> currrentResult=paperRestController.findByStatus(paper2.getStatus());
+
+        assertEquals(ResponseEntity.noContent().build(),currrentResult);
+    }
+    @Test
+    public void findByStatus_TestForNonEmpty(){
         List<Paper> mockResult=new ArrayList<>();
         mockResult.add(paper2);
 
         Mockito.when(paperRepository.findByStatus(paper2.getStatus())).thenReturn(mockResult);
 
-        List<Paper> currrentResult=paperRestController.findByStatus(paper2.getStatus());
+        ResponseEntity<List<Paper>> currrentResult=paperRestController.findByStatus(paper2.getStatus());
 
-        assertEquals(mockResult,currrentResult);
+        assertEquals(mockResult,currrentResult.getBody());
     }
 
     @Test
-    public void findByAuthor_Test(){
+    public void findByAuthor_TestForEmpty(){
+        List<Paper> mockResult=new ArrayList<>();
+
+        Mockito.when(paperRepository.findByAuthor(paper1.getAuthor().getId())).thenReturn(mockResult);
+
+        ResponseEntity<List<Paper>> currentResult=paperRestController.findByAuthor(paper1.getAuthor().getId());
+
+        assertEquals(ResponseEntity.noContent().build(),currentResult);
+    }
+    @Test
+    public void findByAuthor_TestForNonEmpty(){
         List<Paper> mockResult=new ArrayList<>();
         mockResult.add(paper1);
         mockResult.add(paper2);
@@ -89,8 +130,8 @@ public class PaperRestControllerTest {
 
         Mockito.when(paperRepository.findByAuthor(paper1.getAuthor().getId())).thenReturn(mockResult);
 
-        List<Paper> currentResult=paperRestController.findByAuthor(paper1.getAuthor().getId());
+        ResponseEntity<List<Paper>> currentResult=paperRestController.findByAuthor(paper1.getAuthor().getId());
 
-        assertEquals(mockResult,currentResult);
+        assertEquals(mockResult,currentResult.getBody());
     }
 }
