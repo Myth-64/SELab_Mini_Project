@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.aspectj.lang.annotation.Before;
@@ -63,6 +64,17 @@ public class UserRestControllerTest {
         assertEquals(currentResult.get(0).getName(),user1.getName());
         assertEquals(currentResult.get(1).getName(),user2.getName());
         assertEquals(currentResult.get(2).getName(),user3.getName());
+    }
+
+    @Test
+    public void findByUsername_Test(){
+        Optional<User> mockResult=Optional.of(user1);
+
+        Mockito.when(userRepository.findByUsername(user1.getName())).thenReturn(mockResult);
+
+        Optional<User> currentResult=userRestController.findByUsername(user1.getName());
+
+        assertEquals(mockResult,currentResult);
     }
 
 }
