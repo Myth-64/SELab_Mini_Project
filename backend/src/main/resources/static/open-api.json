@@ -236,60 +236,7 @@
         }
       }
     },
-    "/paper/accept": {
-      "post": {
-        "tags": [
-          "Papers"
-        ],
-        "description": "Change the status of paper with given paperId to ACCEPTED",
-        "operationId": "acceptPaper",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "required": true,
-            "style": "form",
-            "explode": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/paper/reject": {
-      "post": {
-        "tags": [
-          "Papers"
-        ],
-        "description": "Change the status of paper with given paperId to REJECTED",
-        "operationId": "rejectPaper",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "required": true,
-            "style": "form",
-            "explode": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
+    
     "/review": {
       "get": {
         "tags": [

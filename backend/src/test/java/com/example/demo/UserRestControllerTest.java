@@ -15,8 +15,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.example.demo.model.Role;
 import com.example.demo.model.Track;
@@ -26,8 +24,6 @@ import com.example.demo.restController.UserRestController;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserRestControllerTest {
-
-    private MockMvc mockMvc;
 
     @Mock
     private UserRepository userRepository;
@@ -46,7 +42,6 @@ public class UserRestControllerTest {
     @Before(value = "")
     public void setup(){
         MockitoAnnotations.openMocks(this);
-        this.mockMvc=MockMvcBuilders.standaloneSetup(userRestController).build();
     }
 
     @Test
@@ -61,9 +56,7 @@ public class UserRestControllerTest {
         
         List<User> currentResult=userRestController.findAll();
 
-        assertEquals(currentResult.get(0).getName(),user1.getName());
-        assertEquals(currentResult.get(1).getName(),user2.getName());
-        assertEquals(currentResult.get(2).getName(),user3.getName());
+        assertEquals(currentResult,mockResult);
     }
 
     @Test
