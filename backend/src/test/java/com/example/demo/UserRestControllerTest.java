@@ -15,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.http.ResponseEntity;
 
 import com.example.demo.model.Role;
 import com.example.demo.model.Track;
@@ -45,29 +46,50 @@ public class UserRestControllerTest {
     }
 
     @Test
-    public void findAll_Test(){
+    public void findAll_TestForEmpty(){
+        List<User> mockResult=new ArrayList<>();
+
+        Mockito.when(userRepository.findAll()).thenReturn(mockResult);
+        
+        ResponseEntity<List<User>> currentResult=userRestController.findAll();
+
+        assertEquals(currentResult,ResponseEntity.noContent().build());
+    }
+
+    @Test
+    public void findAll_TestForNonEmpty(){
         List<User> mockResult=new ArrayList<>();
         mockResult.add(user1);
         mockResult.add(user2);
         mockResult.add(user3);
 
-        
         Mockito.when(userRepository.findAll()).thenReturn(mockResult);
         
-        List<User> currentResult=userRestController.findAll();
+        List<User> currentResult=userRestController.findAll().getBody();
 
         assertEquals(currentResult,mockResult);
     }
 
     @Test
-    public void findByUsername_Test(){
+    public void findByUsername_TestForEmpty(){
         Optional<User> mockResult=Optional.of(user1);
 
         Mockito.when(userRepository.findByUsername(user1.getName())).thenReturn(mockResult);
 
-        Optional<User> currentResult=userRestController.findByUsername(user1.getName());
+        ResponseEntity<Optional<User>> currentResult=userRestController.findByUsername(user2.getName());
 
-        assertEquals(mockResult,currentResult);
+        assertEquals(currentResult,ResponseEntity.notFound().build());
+    }
+
+    @Test
+    public void findByUsername_TestForNonEmpty(){
+        Optional<User> mockResult=Optional.of(user1);
+
+        Mockito.when(userRepository.findByUsername(user1.getName())).thenReturn(mockResult);
+
+        ResponseEntity<Optional<User>> currentResult=userRestController.findByUsername(user1.getName());
+
+        assertEquals(currentResult.getBody(),mockResult);
     }
 
 }
