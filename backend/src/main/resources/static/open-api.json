@@ -52,7 +52,7 @@
         "operationId": "findAll",
         "responses": {
           "200": {
-            "description": "All the users",
+            "description": "Successful",
             "content": {
               "application/json": {
                 "schema": {
@@ -63,6 +63,9 @@
                 }
               }
             }
+          },
+          "204":{
+            "description": "No user exists"
           }
         }
       }
@@ -89,7 +92,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Successful",
             "content": {
               "*/*": {
                 "schema": {
@@ -97,6 +100,9 @@
                 }
               }
             }
+          },
+          "204":{
+            "description": "No user with the given username exists"
           }
         }
       }
@@ -111,7 +117,7 @@
         "operationId": "findAll_1",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Successful",
             "content": {
               "*/*": {
                 "schema": {
@@ -122,6 +128,9 @@
                 }
               }
             }
+          },
+          "204":{
+            "description": "No paper exists"
           }
         }
       }
@@ -148,7 +157,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Successful",
             "content": {
               "*/*": {
                 "schema": {
@@ -159,6 +168,9 @@
                 }
               }
             }
+          },
+          "204":{
+            "description": "No paper with the given status exists"
           }
         }
       }
@@ -186,7 +198,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Successful",
             "content": {
               "*/*": {
                 "schema": {
@@ -194,6 +206,9 @@
                 }
               }
             }
+          },
+          "204":{
+            "description": "No paper with the given ID exists"
           }
         }
       }
@@ -221,7 +236,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Successful",
             "content": {
               "*/*": {
                 "schema": {
@@ -232,6 +247,9 @@
                 }
               }
             }
+          },
+          "204":{
+            "description": "No paper exists with the given author ID exists"
           }
         }
       }
