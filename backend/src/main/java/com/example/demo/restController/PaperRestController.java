@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.model.Paper;
 import com.example.demo.repository.PaperRepository;
+import com.example.demo.sqlQueryClasses.PaperStatusCountMap;
 
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -15,6 +16,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 /**
@@ -74,5 +77,12 @@ public class PaperRestController {
         else{
             return ResponseEntity.ok(paperList);
         }
+    }
+
+    @GetMapping("/countByStatus")
+    public ResponseEntity<List<PaperStatusCountMap>> countByStatus(){
+        List<PaperStatusCountMap> Test = paperRepository.countByStatus();
+        System.out.println(Test);
+        return ResponseEntity.ok(Test);
     }
 }
