@@ -14,8 +14,9 @@ export const loader = async () => {
     const resp = await axios.get('http://localhost:8080/api/papers/status', {
       params: data,
     });
-    accepted_count = resp.length;
+    accepted_count = resp.data.length;
     console.log(resp.data);
+
     return resp.data;
   } catch (error) {
     return error;
@@ -90,7 +91,7 @@ function Home() {
             <h3>Accepted</h3>
             <BsPeopleFill className="card_icon" />
           </div>
-          <h1>3</h1>
+          <h1>{accepted_count}</h1>
         </div>
         <div className="card">
           <div className="card-inner">
