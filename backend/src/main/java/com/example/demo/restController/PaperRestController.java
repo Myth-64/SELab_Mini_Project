@@ -82,7 +82,6 @@ public class PaperRestController {
     @GetMapping("/countByStatus")
     public ResponseEntity<List<PaperStatusCountMap>> countByStatus(){
         List<PaperStatusCountMap> Test = paperRepository.countByStatus();
-        System.out.println(Test);
         return ResponseEntity.ok(Test);
     }
 }
