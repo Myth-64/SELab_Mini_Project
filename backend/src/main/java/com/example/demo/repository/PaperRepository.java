@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import com.example.demo.model.Paper;
+import com.example.demo.sqlQueryClasses.PaperStatusCountMap;
 
 import java.util.List;
 
@@ -16,4 +17,7 @@ public interface PaperRepository extends JpaRepository<Paper,Long>{
 
      @Query(value="SELECT * FROM Papers WHERE author_id=?1",nativeQuery=true)
      List<Paper> findByAuthor(Long authorId);
+
+     @Query(value="SELECT P.status AS status,COUNT(*) AS count FROM Papers P GROUP BY P.status",nativeQuery=true)
+     List<PaperStatusCountMap> countByStatus();
 }
