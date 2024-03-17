@@ -14,17 +14,12 @@ var unassigned_count,
   rejected_count;
 export const loader = async () => {
   try {
-    const data = { status: "UNASSIGNED" };
-    const resp = await axios.get(
-      "http://localhost:8080/api/papers/countByStatus"
-    );
-    unassigned_count = resp.data;
-    console.log(resp.data);
-    const tempMap = resp.data.reduce(function (map, obj) {
-      map[obj.status] = obj.count;
-      return map;
+    const resp = await axios.get('http://localhost:8080/api/papers/status', {
+      params: data,
     });
-    console.log(tempMap);
+    accepted_count = resp.data.length;
+    console.log(resp.data);
+
     return resp.data;
   } catch (error) {
     return error;

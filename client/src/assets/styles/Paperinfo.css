@@ -31,3 +31,6 @@
   width: 90%;
   justify-content: space-between;
 }
+.paperinfobox h4:hover {
+  color: navy;
+}

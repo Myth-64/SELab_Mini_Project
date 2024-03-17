@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate, Link } from 'react-router-dom';
 import '../assets/styles/Paperinfo.css';
 
 const paperdetails = [
@@ -35,6 +35,19 @@ const paperdetails = [
 ];
 
 const PaperInfo = () => {
+  const navigate = useNavigate();
+
+  const gotoDetail = async (event, papername) => {
+    event.preventDefault();
+    navigate('/dashboard/paperdetail', { state: { papername: { papername } } });
+    console.log(papername);
+    try {
+      //get paper info from backend
+    } catch (error) {
+      //handle error maybe with toast
+    }
+  };
+
   return (
     <div className="paper-maincontainer">
       <h1>Paper Info</h1>
@@ -46,7 +59,10 @@ const PaperInfo = () => {
         const { papertitle, paperstatus } = details;
         return (
           <div className="paperinfobox">
-            <h4 style={{ fontFamily: 'sans-serif', fontWeight: 'normal' }}>
+            <h4
+              style={{ fontFamily: 'sans-serif', fontWeight: 'normal' }}
+              onClick={(e) => gotoDetail(e, papertitle)}
+            >
               {papertitle}
             </h4>
             <div className={paperstatus == 'Pending' ? 'red box' : 'green box'}>
