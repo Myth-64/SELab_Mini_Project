@@ -1,9 +1,13 @@
-.outerlayout {
-  padding: 4rem 4rem;
-  width: 100%;
+.titlebox {
+  padding: 2rem 2rem;
+  width: 95%;
+  background-color: white;
+  border-radius: 1rem;
+  margin: auto;
+  margin-top: 1rem;
 }
 .tag {
-  background-color: #f0f0f0;
+  background-color: #749bc2;
   border-radius: 10px;
   padding: 0.25rem 0.5rem;
 }
@@ -17,4 +21,41 @@
   box-shadow: 0 0 5px 5px grey;
   border-radius: 1rem;
   padding: 1rem;
+  background-color: white;
+}
+.review-outerbox {
+}
+.paperbox h2 {
+  font-size: 2rem;
+}
+.paperbox h4 {
+  margin-left: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+.panel button {
+  padding: 0.5rem;
+  border-radius: 1rem;
+  background-color: #bcd4de;
+}
+
+.panel {
+  display: flex;
+  gap: 1rem;
+  width: 95%;
+  margin: auto;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  align-items: center;
+  background-color: #a5ccd1;
+}
+
+.paperdetailbox {
+  display: flex;
+  margin: 1.5rem;
+  justify-content: space-between;
+  box-shadow: 0 0 5px 5px grey;
+  padding: 1rem;
+  border-radius: 1rem;
 }

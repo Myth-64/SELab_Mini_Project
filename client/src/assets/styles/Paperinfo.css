@@ -1,6 +1,10 @@
 .paper-maincontainer {
-  padding: 4rem 4rem;
-  width: 100%;
+  padding: 3rem 4rem;
+  width: 95%;
+  margin: auto;
+  margin-top: 1rem;
+  background-color: white;
+  border-radius: 1rem;
 }
 .paperinfobox {
   display: flex;

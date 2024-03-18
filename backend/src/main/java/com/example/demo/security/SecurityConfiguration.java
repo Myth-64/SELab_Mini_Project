@@ -46,7 +46,7 @@ public class SecurityConfiguration {
             .requestMatchers("/user").hasRole("USER")
             .requestMatchers("/","/img/**").permitAll()
             .requestMatchers("/login").permitAll()
-            .requestMatchers("/v3/api-docs/**","/swagger-ui/**","/api/authenticate","api/papers/**").permitAll()                          // For Swagger
+            .requestMatchers("/v3/api-docs/**","/swagger-ui/**","/api/authenticate","api/papers/**","api/reviews/**").permitAll()                          // For Swagger
             .anyRequest().authenticated())
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
