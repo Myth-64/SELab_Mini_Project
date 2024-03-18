@@ -1,0 +1,38 @@
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.selected {
+  display: flex;
+  gap: 1rem;
+}
+.modal-content {
+  position: relative;
+  border: 1px solid #fff;
+  width: 500px;
+  padding: 2rem 2rem 2rem 2rem;
+  background-color: #fff;
+  border-radius: 15px;
+}
+.exit-icon {
+  cursor: pointer;
+  position: absolute;
+  font-size: 20px;
+  top: -0.02rem;
+  right: 0.65rem;
+}
+
+.modal-image img {
+  width: 8rem;
+}
+.modalText {
+  text-align: justify;
+}

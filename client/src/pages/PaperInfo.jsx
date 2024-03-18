@@ -1,7 +1,16 @@
 import React from 'react';
 import { useLoaderData, useNavigate, Link } from 'react-router-dom';
 import '../assets/styles/Paperinfo.css';
+import axios from 'axios';
 
+export const loader = async () => {
+  try {
+    const resp = await axios.get('http://localhost:8080/api/papers');
+    return resp.data;
+  } catch (error) {
+    return error;
+  }
+};
 const paperdetails = [
   {
     papertitle: 'The insights of ruminal culturomics',
@@ -35,12 +44,14 @@ const paperdetails = [
 ];
 
 const PaperInfo = () => {
+  const response = useLoaderData();
   const navigate = useNavigate();
 
-  const gotoDetail = async (event, papername) => {
+  const gotoDetail = async (event, paperId) => {
     event.preventDefault();
-    navigate('/dashboard/paperdetail', { state: { papername: { papername } } });
-    console.log(papername);
+    navigate(`/dashboard/paperdetail/${paperId}`, {
+      state: { paperId: { paperId } },
+    });
     try {
       //get paper info from backend
     } catch (error) {
@@ -55,18 +66,18 @@ const PaperInfo = () => {
         <h3>Paper Title</h3>
         <h3>Status</h3>
       </div>
-      {paperdetails.map((details) => {
-        const { papertitle, paperstatus } = details;
+      {response.map((paper) => {
+        const { paperId, title, status } = paper;
         return (
           <div className="paperinfobox">
             <h4
               style={{ fontFamily: 'sans-serif', fontWeight: 'normal' }}
-              onClick={(e) => gotoDetail(e, papertitle)}
+              onClick={(e) => gotoDetail(e, paperId)}
             >
-              {papertitle}
+              {title}
             </h4>
-            <div className={paperstatus == 'Pending' ? 'red box' : 'green box'}>
-              {paperstatus}
+            <div className={status == 'REJECTED' ? 'red box' : 'green box'}>
+              {status}
             </div>
           </div>
         );

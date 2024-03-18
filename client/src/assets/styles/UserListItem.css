@@ -1,0 +1,19 @@
+.modal-mainContents {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+}
+.modal-title {
+  color: #6821c3;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 28px;
+}
+.modal-button button {
+  border: 1px solid #6821c3;
+  padding: 6px;
+  width: 8rem;
+  background-color: #6821c3;
+  color: white;
+  border-radius: 7px;
+}
