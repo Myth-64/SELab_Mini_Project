@@ -12,12 +12,12 @@ const Dashboard = () => {
   return (
     <div className="grid-container">
       <Navbar OpenSidebar={OpenSidebar} />
-      <div>
-        <SideBar
-          openSidebarToggle={openSidebarToggle}
-          OpenSidebar={OpenSidebar}
-        />
-      </div>
+
+      <SideBar
+        openSidebarToggle={openSidebarToggle}
+        OpenSidebar={OpenSidebar}
+      />
+
       <div className="outlet">
         <Outlet />
       </div>

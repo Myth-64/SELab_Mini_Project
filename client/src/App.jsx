@@ -13,6 +13,9 @@ import { AuthContext } from './auth/AuthContext';
 import Logout from './pages/Logout';
 
 import { loader as paperloader } from './pages/Home';
+import { loader as paperinfoloader } from './pages/PaperInfo';
+import { loader as paperdetailloader } from './pages/PaperDetail';
+import AssignReviewers from './pages/AssignReviewers';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -42,10 +45,12 @@ const router = createBrowserRouter([
 
               {
                 path: 'paperinfo',
+                loader: paperinfoloader,
                 element: <PaperInfo />,
               },
               {
-                path: 'paperdetail',
+                path: 'paperdetail/:paperId',
+                loader: paperdetailloader,
                 element: <PaperDetail />,
               },
               {
