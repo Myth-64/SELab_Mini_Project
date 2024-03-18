@@ -3,6 +3,7 @@ package com.example.demo.restController;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.User;
+import com.example.demo.repository.TrackRepository;
 import com.example.demo.repository.UserRepository;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,6 +23,8 @@ public class UserRestController {
     
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    TrackRepository trackRepository;
 
     @Operation(summary = "findAll", description="Return the list of all users")
     @GetMapping("")

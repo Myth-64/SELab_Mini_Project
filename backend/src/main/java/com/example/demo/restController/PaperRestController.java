@@ -5,20 +5,30 @@ import org.springframework.web.bind.annotation.*;
 
 
 import com.example.demo.model.Paper;
+import com.example.demo.model.Track;
+import com.example.demo.model.User;
 import com.example.demo.repository.PaperRepository;
+import com.example.demo.repository.TrackRepository;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.sqlQueryClasses.PaperStatusCountMap;
 
 import io.swagger.v3.oas.annotations.Operation;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-
+class SortByTrackCount implements Comparator<User>{
+    public int compare(User left,User right){
+        return right.getTracks().size()-left.getTracks().size();
+    }
+}
 
 /**
  * Controller class responsible for handling HTTP requests related to Paper entities.
@@ -30,6 +40,10 @@ public class PaperRestController {
 
     @Autowired
     PaperRepository paperRepository;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    TrackRepository trackRepository;
 
     @Operation(summary = "findAll", description="Return the list of all papers")
     @GetMapping("")
@@ -81,7 +95,22 @@ public class PaperRestController {
 
     @GetMapping("/countByStatus")
     public ResponseEntity<List<PaperStatusCountMap>> countByStatus(){
-        List<PaperStatusCountMap> Test = paperRepository.countByStatus();
-        return ResponseEntity.ok(Test);
+        List<PaperStatusCountMap> statusList = paperRepository.countByStatus();
+        return ResponseEntity.ok(statusList);
+    }
+
+    @GetMapping(value="/getReviewers")
+    public ResponseEntity<List<User>> getReviewers(@RequestParam Long paperId){
+        List<User> unassignedReviewers=userRepository.getUnassignedReviewers(paperId);
+
+        for(int i1=0;i1<unassignedReviewers.size();++i1){
+            List<Track> commonTracks=trackRepository.findCommonTracks(unassignedReviewers.get(i1).getId(),paperId);
+            Set<Track> commonTracksSet=commonTracks.stream().collect(Collectors.toSet());
+            unassignedReviewers.get(i1).setTracks(commonTracksSet);
+        }
+
+        Collections.sort(unassignedReviewers,new SortByTrackCount());
+
+        return ResponseEntity.ok(unassignedReviewers);
     }
 }
