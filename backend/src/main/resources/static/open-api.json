@@ -495,6 +495,30 @@
           }
         }
       }
+    },
+    "/papers/countByStatus": {
+      "get": {
+          "tags": [
+              "Papers"
+          ],
+          "description": "Returns a frequency map of different paper statuses",
+          "operationId": "countByStatus",
+          "responses": {
+              "200": {
+                  "description": "OK",
+                  "content": {
+                      "*/*": {
+                          "schema": {
+                              "type": "array",
+                              "items": {
+                                  "$ref": "#/components/schemas/PaperStatusCountMap"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      }
     }
   },
   "components": {
@@ -621,7 +645,19 @@
                 "type": "string"
             }
         }
-    }
+      },
+      "PaperStatusCountMap": {
+        "type": "object",
+        "properties": {
+            "count": {
+                "type": "integer",
+                "format": "int32"
+            },
+            "status": {
+                "type": "string"
+            }
+        }
+      }
     }
   }
 }
