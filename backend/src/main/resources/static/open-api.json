@@ -255,7 +255,7 @@
       }
     },
     
-    "/review": {
+    "/reviews": {
       "get": {
         "tags": [
           "Reviews"
@@ -279,7 +279,7 @@
         }
       }
     },
-    "/review/findByPaper": {
+    "/reviews/findByPaper": {
       "get": {
         "tags": [
           "Reviews"
@@ -316,7 +316,7 @@
         }
       }
     },
-    "/review/findByReviewer": {
+    "/reviews/findByReviewer": {
       "get": {
         "tags": [
           "Reviews"
@@ -353,7 +353,7 @@
         }
       }
     },
-    "/review/findByAssignee": {
+    "/reviews/findByAssignee": {
       "get": {
         "tags": [
           "Reviews"
@@ -390,7 +390,7 @@
         }
       }
     },
-    "/review/addReview": {
+    "/reviews/addReview": {
       "post": {
         "tags": [
           "Reviews"

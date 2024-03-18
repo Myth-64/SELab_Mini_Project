@@ -31,4 +31,15 @@ public class ReviewRestController {
         return ResponseEntity.ok(reviewList);
     }
 
+    @GetMapping("/findByReviewer")
+    public ResponseEntity<List<Review>> findByReviewer(@RequestParam Long id){
+        List<Review> reviewList=reviewRepository.findByReviewer(id);
+        return ResponseEntity.ok(reviewList);
+    }
+
+    @GetMapping("/findByAssignee")
+    public ResponseEntity<List<Review>> findByAssignee(@RequestParam Long id){
+        List<Review> reviewList=reviewRepository.findByAssignee(id);
+        return ResponseEntity.ok(reviewList);
+    }
 }
