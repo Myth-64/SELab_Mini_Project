@@ -72,7 +72,21 @@ INSERT INTO User_Tracks VALUES
 ((SELECT id FROM Users WHERE name="Samuel Reynolds"),(SELECT track_Id FROM Tracks WHERE title="IoT")),
 ((SELECT id FROM Users WHERE name="Samuel Reynolds"),(SELECT track_Id FROM Tracks WHERE title="Cybersecurity")),
 ((SELECT id FROM Users WHERE name="Olivia Davis"),(SELECT track_Id FROM Tracks WHERE title="Blockchain Technology")),
-((SELECT id FROM Users WHERE name="Olivia Davis"),(SELECT track_Id FROM Tracks WHERE title="Quantum Computing"));
+((SELECT id FROM Users WHERE name="Olivia Davis"),(SELECT track_Id FROM Tracks WHERE title="Quantum Computing")),
+((SELECT id FROM Users WHERE name="Alexander Hayes"),(SELECT track_Id FROM Tracks WHERE title="Artificial Intelligence")),
+((SELECT id FROM Users WHERE name="Alexander Hayes"),(SELECT track_Id FROM Tracks WHERE title="IoT")),
+((SELECT id FROM Users WHERE name="Lisa Robinson"),(SELECT track_Id FROM Tracks WHERE title="Blockchain Technology")),
+((SELECT id FROM Users WHERE name="Lisa Robinson"),(SELECT track_Id FROM Tracks WHERE title="Quantum Computing")),
+((SELECT id FROM Users WHERE name="John Smith"),(SELECT track_Id FROM Tracks WHERE title="Cybersecurity")),
+((SELECT id FROM Users WHERE name="John Smith"),(SELECT track_Id FROM Tracks WHERE title="Artificial Intelligence")),
+((SELECT id FROM Users WHERE name="Daniel Martinez"),(SELECT track_Id FROM Tracks WHERE title="IoT")),
+((SELECT id FROM Users WHERE name="Daniel Martinez"),(SELECT track_Id FROM Tracks WHERE title="Cybersecurity")),
+((SELECT id FROM Users WHERE name="reviewer5"),(SELECT track_Id FROM Tracks WHERE title="Quantum Computing")),
+((SELECT id FROM Users WHERE name="reviewer5"),(SELECT track_Id FROM Tracks WHERE title="Blockchain Technology"));
+
+
+
+
 
 INSERT INTO Paper_Tracks VALUES
 ((SELECT paper_id FROM Papers WHERE title="Intelligent Integration: Exploring AI-Driven Optimization in IoT Ecosystems"),(SELECT track_Id FROM Tracks WHERE title="Artificial Intelligence")),

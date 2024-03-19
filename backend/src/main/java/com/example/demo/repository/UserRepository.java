@@ -19,6 +19,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     
     boolean existsByUsername(String username);
 
-    @Query(value="SELECT * FROM users WHERE id NOT IN (SELECT author_id FROM reviews WHERE paper_id=?1)",nativeQuery=true)
+    @Query(value="SELECT users.* FROM users,users_roles WHERE id NOT IN (SELECT author_id FROM reviews WHERE paper_id=?1) AND id=user_id AND role_id IN (SELECT roles.id FROM roles WHERE roles.name=\"ROLE_REVIEWER\")",nativeQuery=true)
     List<User> getUnassignedReviewers(Long paperId);
 }

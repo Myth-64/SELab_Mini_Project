@@ -143,7 +143,7 @@ export const PaperDetail = () => {
         <div className="review-box">
           <h2>Reviews</h2>
           {reviewdata.map((details, index) => {
-            const { reviewDescription, assignedBy } = details;
+            const { reviewDescription, author } = details;
             console.log(reviewDescription);
             return (
               <div className="paperdetailbox" key={index}>
@@ -151,7 +151,7 @@ export const PaperDetail = () => {
                   style={{ fontFamily: 'sans-serif', fontWeight: 'normal' }}
                   onClick={(e) => gotoDetail(e, review)}
                 >
-                  {reviewDescription} by - {assignedBy.name}
+                  {reviewDescription} by - {author.name}
                 </h4>
               </div>
             );
