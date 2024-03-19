@@ -98,6 +98,7 @@ export const PaperDetail = () => {
         <div className="paperbox">
           <h2>{paperdata.title}</h2>
           <h4>by: {paperdata.author.name}</h4>
+          <h5> {paperdata.description} </h5>
           <div className="tagbox">
             tags:
             {paperdata.tracks.map((trackelement) => {

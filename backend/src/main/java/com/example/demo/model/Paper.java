@@ -41,6 +41,7 @@ public class Paper {
      /**
      * The description of the paper.
      */
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     /**
