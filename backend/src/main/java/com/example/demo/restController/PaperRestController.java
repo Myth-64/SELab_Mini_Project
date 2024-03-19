@@ -8,8 +8,10 @@ import com.example.demo.model.Paper;
 import com.example.demo.model.Track;
 import com.example.demo.model.User;
 import com.example.demo.repository.PaperRepository;
+import com.example.demo.repository.ReviewRepository;
 import com.example.demo.repository.TrackRepository;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.requestClasses.AddReviewerRequest;
 import com.example.demo.sqlQueryClasses.PaperStatusCountMap;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -44,6 +46,8 @@ public class PaperRestController {
     UserRepository userRepository;
     @Autowired
     TrackRepository trackRepository;
+    @Autowired
+    ReviewRepository reviewRepository;
 
     @Operation(summary = "findAll", description="Return the list of all papers")
     @GetMapping("")
@@ -112,5 +116,20 @@ public class PaperRestController {
         Collections.sort(unassignedReviewers,new SortByTrackCount());
 
         return ResponseEntity.ok(unassignedReviewers);
+    }
+
+    @PostMapping(value="/addReviewers")
+    public ResponseEntity<String> addReviewers(@RequestBody AddReviewerRequest request){
+        Long paperId=request.getPaperId();
+        List<Long> userIds=request.getUserIds();
+
+        paperRepository.setStatusToUnderReview(paperId);
+
+        for(int i1=0;i1<userIds.size();++i1){
+            reviewRepository.insertReview(userIds.get(i1),paperId);
+        }
+        reviewRepository.flush();
+
+        return ResponseEntity.ok("Lol");
     }
 }
