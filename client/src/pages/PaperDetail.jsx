@@ -4,7 +4,9 @@ import { useState } from 'react';
 import AssignModal from '../components/AssignModal';
 import { useLoaderData, useLocation } from 'react-router-dom';
 
+var paperId_param;
 export const loader = async ({ params }) => {
+  paperId_param = params.paperId;
   try {
     const resp = await fetch(
       `http://localhost:8080/api/papers/findById?id=${params.paperId}`,
@@ -77,8 +79,13 @@ export const PaperDetail = () => {
   const [isreviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [reviewmodalContent, setreviewModalContent] = useState('');
 
-  const openModal = (content) => {
+  const openModal = async () => {
     //make openmodal async and fetch information from here
+    const contentresp = await fetch(
+      `http://localhost:8080/api/papers/getReviewers?paperId=${paperId_param}`,
+      { method: 'GET' }
+    );
+    const content = await contentresp.json();
     setIsModalOpen(true);
     setModalContent(content);
   };
