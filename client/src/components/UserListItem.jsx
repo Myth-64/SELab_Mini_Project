@@ -10,9 +10,6 @@ const UserListItem = ({ name, status, handleFunction }) => {
             <img src={modalContent.image} alt="image" />
           </div> */}
       {/* <p className="mt-lg-3 modalText">{modalContent.content}</p> */}
-      <div className="modal-button text-end">
-        <button>{status}</button>
-      </div>
     </div>
   );
 };

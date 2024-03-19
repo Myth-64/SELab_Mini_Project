@@ -63,7 +63,6 @@ const AssignModal = ({
             <UserListItem
               key={index}
               name={name}
-              status={status}
               handleFunction={() => handleGroup(name)}
             />
           );
