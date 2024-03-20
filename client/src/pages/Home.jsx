@@ -108,6 +108,13 @@ function Home() {
         </div>
         <div className="card">
           <div className="card-inner">
+            <h3>Completed Review</h3>
+            <BsFillBellFill className="card_icon" />
+          </div>
+          <h1>{completed_review_count}</h1>
+        </div>
+        <div className="card">
+          <div className="card-inner">
             <h3>Accepted</h3>
             <BsPeopleFill className="card_icon" />
           </div>
@@ -119,13 +126,6 @@ function Home() {
             <BsFillBellFill className="card_icon" />
           </div>
           <h1>{rejected_count}</h1>
-        </div>
-        <div className="card">
-          <div className="card-inner">
-            <h3>Completed Review</h3>
-            <BsFillBellFill className="card_icon" />
-          </div>
-          <h1>{completed_review_count}</h1>
         </div>
       </div>
     </main>
