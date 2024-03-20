@@ -43,6 +43,14 @@ const paperdetails = [
   },
 ];
 
+const statusMap =  new Map([
+  ["UNASSIGNED","Unassigned"],
+  ["UNDER_REVIEW","Under Review"],
+  ["COMPLETED_REVIEW","Completed Review"],
+  ["ACCEPTED","Accepted"],
+  ["REJECTED","Rejected"]
+])
+
 const PaperInfo = () => {
   const response = useLoaderData();
   const navigate = useNavigate();
@@ -77,7 +85,9 @@ const PaperInfo = () => {
               {title}
             </h4>
             <div className={status == 'REJECTED' ? 'red box' : 'green box'}>
-              {status}
+              <div style={{'color':'white'}}>
+                {statusMap.get(status)}
+              </div>
             </div>
           </div>
         );

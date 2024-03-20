@@ -15,6 +15,7 @@
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  margin-top: 1rem;
 }
 .review-box {
   margin: 1.5rem;
