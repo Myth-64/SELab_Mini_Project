@@ -122,14 +122,11 @@ public class PaperRestController {
     public ResponseEntity<String> addReviewers(@RequestBody AddReviewerRequest request){
         Long paperId=request.getPaperId();
         List<Long> userIds=request.getUserIds();
-        String username=request.getUsername();
-
-        Long assigneeId=userRepository.findByUsername(username).get().getId();
 
         paperRepository.setStatusToUnderReview(paperId);
 
         for(int i1=0;i1<userIds.size();++i1){
-            reviewRepository.insertReview(userIds.get(i1),paperId,assigneeId);
+            reviewRepository.insertReview(userIds.get(i1),paperId);
         }
         reviewRepository.flush();
 
