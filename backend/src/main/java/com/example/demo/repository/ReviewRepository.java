@@ -23,6 +23,6 @@ public interface ReviewRepository extends JpaRepository<Review,Long>{
 
     @Modifying
     @Transactional
-    @Query(value="INSERT INTO reviews (author_id,paper_id,assignee_id) VALUES (?1,?2,1)",nativeQuery=true)
-    void insertReview(Long authorId, Long paperId);
+    @Query(value="INSERT INTO reviews (author_id,paper_id,assignee_id) VALUES (?1,?2,?3)",nativeQuery=true)
+    void insertReview(Long authorId, Long paperId, Long assigneeId);
 }
