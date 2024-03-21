@@ -12,6 +12,7 @@ import com.example.demo.repository.ReviewRepository;
 import com.example.demo.repository.TrackRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.requestClasses.AddReviewerRequest;
+import com.example.demo.service.EmailService;
 import com.example.demo.sqlQueryClasses.PaperStatusCountMap;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -48,6 +49,8 @@ public class PaperRestController {
     TrackRepository trackRepository;
     @Autowired
     ReviewRepository reviewRepository;
+    @Autowired
+    EmailService mailSender;
 
     @Operation(summary = "findAll", description="Return the list of all papers")
     @GetMapping("")
@@ -132,6 +135,8 @@ public class PaperRestController {
             reviewRepository.insertReview(userIds.get(i1),paperId,assigneeId);
         }
         reviewRepository.flush();
+
+        // mailSender.sendEmail("Krishnendhu","krishnendhu1002@gmail.com","Sup","🔥🔥");
 
         return ResponseEntity.ok("Lol");
     }
