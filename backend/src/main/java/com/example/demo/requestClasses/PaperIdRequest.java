@@ -1,6 +1,6 @@
 package com.example.demo.requestClasses;
 
-public class StatusChangePaperId {
+public class PaperIdRequest {
     Long paperId;
 
     public Long getPaperId(){

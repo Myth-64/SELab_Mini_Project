@@ -1,0 +1,446 @@
+openapi: 3.0.0
+info:
+  title: NITCONF
+  description: Web app tailored for conference program committees, enabling reviewer assignments, schedule creation, and final decision-making on paper acceptance. Features include role-based access for program committees and organized tracks for various topics.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api
+    description: Localhost
+paths:
+  /authenticate:
+    post:
+      tags:
+        - Login Controller
+      operationId: authenticateAndGetToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /papers/reject:
+    post:
+      tags:
+        - Papers
+      operationId: reject
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StatusChangePaperId'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /papers/addReviewers:
+    post:
+      tags:
+        - Papers
+      operationId: addReviewers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddReviewerRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /papers/accept:
+    post:
+      tags:
+        - Papers
+      operationId: accept
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StatusChangePaperId'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /users:
+    get:
+      tags:
+        - Users
+      summary: findAll
+      description: Return the list of all users
+      operationId: findAll
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /users/findByUsername:
+    get:
+      tags:
+        - Users
+      summary: findByUsername
+      description: Return the details of the user with the given username
+      operationId: findByUsername
+      parameters:
+        - name: username
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/User'
+  /reviews:
+    get:
+      tags:
+        - Reviews
+      operationId: findAll_1
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+  /reviews/findByReviewer:
+    get:
+      tags:
+        - Reviews
+      operationId: findByReviewer
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+  /reviews/findByPaper:
+    get:
+      tags:
+        - Reviews
+      operationId: findByPaper
+      parameters:
+        - name: paperId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+  /reviews/findByPaperCompleted:
+    get:
+      tags:
+        - Reviews
+      operationId: findByPaperCompleted
+      parameters:
+        - name: paperId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+  /reviews/findByAssignee:
+    get:
+      tags:
+        - Reviews
+      operationId: findByAssignee
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+  /papers:
+    get:
+      tags:
+        - Papers
+      summary: findAll
+      description: Return the list of all papers
+      operationId: findAll_2
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Paper'
+  /papers/getReviewers:
+    get:
+      tags:
+        - Papers
+      operationId: getReviewers
+      parameters:
+        - name: paperId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /papers/findByStatus:
+    get:
+      tags:
+        - Papers
+      summary: findByStatus
+      description: Returns the list of all papers with the given status
+      operationId: findByStatus
+      parameters:
+        - name: status
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Paper'
+  /papers/findById:
+    get:
+      tags:
+        - Papers
+      summary: findById
+      description: Returns the paper with the given ID
+      operationId: findById
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Paper'
+  /papers/findByAuthor:
+    get:
+      tags:
+        - Papers
+      summary: findByAuthor
+      description: Returns the list of all papers submitted by the author with given authorId
+      operationId: findByAuthor
+      parameters:
+        - name: authorId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Paper'
+  /papers/countByStatus:
+    get:
+      tags:
+        - Papers
+      operationId: countByStatus
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaperStatusCountMap'
+components:
+  schemas:
+    StatusChangePaperId:
+      type: object
+      properties:
+        paperId:
+          type: integer
+          format: int64
+    AddReviewerRequest:
+      type: object
+      properties:
+        paperId:
+          type: integer
+          format: int64
+        username:
+          type: string
+        userIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+    AuthRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    Role:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    Track:
+      type: object
+      properties:
+        trackId:
+          type: integer
+          format: int64
+        title:
+          type: string
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        roles:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        tracks:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
+    Paper:
+      type: object
+      properties:
+        paperId:
+          type: integer
+          format: int64
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        author:
+          $ref: '#/components/schemas/User'
+        tracks:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
+    Review:
+      type: object
+      properties:
+        reviewId:
+          type: integer
+          format: int64
+        paper:
+          $ref: '#/components/schemas/Paper'
+        author:
+          $ref: '#/components/schemas/User'
+        reviewDescription:
+          type: string
+        status:
+          type: string
+        deadline:
+          type: string
+          format: date-time
+        assignedBy:
+          $ref: '#/components/schemas/User'
+    PaperStatusCountMap:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        status:
+          type: string
