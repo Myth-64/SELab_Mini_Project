@@ -12,6 +12,7 @@ import com.example.demo.repository.ReviewRepository;
 import com.example.demo.repository.TrackRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.requestClasses.AddReviewerRequest;
+import com.example.demo.requestClasses.StatusChangePaperId;
 import com.example.demo.service.EmailService;
 import com.example.demo.sqlQueryClasses.PaperStatusCountMap;
 
@@ -129,7 +130,7 @@ public class PaperRestController {
 
         Long assigneeId=userRepository.findByUsername(username).get().getId();
 
-        paperRepository.setStatusToUnderReview(paperId);
+        paperRepository.updateStatus("UNDER_REVIEW",paperId);
 
         for(int i1=0;i1<userIds.size();++i1){
             reviewRepository.insertReview(userIds.get(i1),paperId,assigneeId);
@@ -139,5 +140,35 @@ public class PaperRestController {
         // mailSender.sendEmail("Krishnendhu","krishnendhu1002@gmail.com","Sup","🔥🔥");
 
         return ResponseEntity.ok("Lol");
+    }
+
+    @PostMapping(value="/accept")
+    public ResponseEntity<String> accept(@RequestBody StatusChangePaperId paperIdBody){
+        Long paperId=paperIdBody.getPaperId();
+
+        String status=paperRepository.findById(paperId).get().getStatus();
+
+        if(status.equals("COMPLETED_REVIEW")){
+            paperRepository.updateStatus("ACCEPTED",paperId);
+            return ResponseEntity.ok("Status changed successfully");
+        }
+        else{
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PostMapping(value="/reject")
+    public ResponseEntity<String> reject(@RequestBody StatusChangePaperId paperIdBody){
+        Long paperId=paperIdBody.getPaperId();
+
+        String status=paperRepository.findById(paperId).get().getStatus();
+
+        if(status.equals("COMPLETED_REVIEW")){
+            paperRepository.updateStatus("REJECTED",paperId);
+            return ResponseEntity.ok("Status changed successfully");
+        }
+        else{
+            return ResponseEntity.badRequest().build();
+        }
     }
 }

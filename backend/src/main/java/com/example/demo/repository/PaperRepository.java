@@ -26,6 +26,6 @@ public interface PaperRepository extends JpaRepository<Paper,Long>{
 
      @Modifying
      @Transactional
-     @Query(value="UPDATE Papers SET status=\"UNDER_REVIEW\" WHERE paper_id=?1",nativeQuery=true)
-     void setStatusToUnderReview(Long paperId);
+     @Query(value="UPDATE Papers SET status=?1 WHERE paper_id=?2",nativeQuery=true)
+     void updateStatus(String status,Long paperId);
 }
