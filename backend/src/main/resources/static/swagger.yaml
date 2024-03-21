@@ -7,7 +7,7 @@ servers:
   - url: http://localhost:8080/api
     description: Localhost
 paths:
-  /api/authenticate:
+  /authenticate:
     post:
       tags:
         - Login Controller
@@ -25,7 +25,7 @@ paths:
             '*/*':
               schema:
                 type: string
-  /api/papers/reject:
+  /papers/reject:
     post:
       tags:
         - Papers
@@ -43,7 +43,7 @@ paths:
             '*/*':
               schema:
                 type: string
-  /api/papers/addReviewers:
+  /papers/addReviewers:
     post:
       tags:
         - Papers
@@ -61,7 +61,7 @@ paths:
             '*/*':
               schema:
                 type: string
-  /api/papers/accept:
+  /papers/accept:
     post:
       tags:
         - Papers
@@ -79,7 +79,7 @@ paths:
             '*/*':
               schema:
                 type: string
-  /api/users:
+  /users:
     get:
       tags:
         - Users
@@ -95,7 +95,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/User'
-  /api/users/findByUsername:
+  /users/findByUsername:
     get:
       tags:
         - Users
@@ -115,7 +115,7 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/User'
-  /api/reviews:
+  /reviews:
     get:
       tags:
         - Reviews
@@ -129,7 +129,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Review'
-  /api/reviews/findByReviewer:
+  /reviews/findByReviewer:
     get:
       tags:
         - Reviews
@@ -150,7 +150,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Review'
-  /api/reviews/findByPaper:
+  /reviews/findByPaper:
     get:
       tags:
         - Reviews
@@ -171,7 +171,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Review'
-  /api/reviews/findByPaperCompleted:
+  /reviews/findByPaperCompleted:
     get:
       tags:
         - Reviews
@@ -192,7 +192,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Review'
-  /api/reviews/findByAssignee:
+  /reviews/findByAssignee:
     get:
       tags:
         - Reviews
@@ -213,7 +213,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Review'
-  /api/papers:
+  /papers:
     get:
       tags:
         - Papers
@@ -229,7 +229,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Paper'
-  /api/papers/getReviewers:
+  /papers/getReviewers:
     get:
       tags:
         - Papers
@@ -250,7 +250,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/User'
-  /api/papers/findByStatus:
+  /papers/findByStatus:
     get:
       tags:
         - Papers
@@ -272,7 +272,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Paper'
-  /api/papers/findById:
+  /papers/findById:
     get:
       tags:
         - Papers
@@ -293,7 +293,7 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/Paper'
-  /api/papers/findByAuthor:
+  /papers/findByAuthor:
     get:
       tags:
         - Papers
@@ -316,7 +316,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Paper'
-  /api/papers/countByStatus:
+  /papers/countByStatus:
     get:
       tags:
         - Papers

@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import com.example.demo.model.Paper;
+import com.example.demo.model.Review;
 import com.example.demo.model.Track;
 import com.example.demo.model.User;
 import com.example.demo.repository.PaperRepository;
@@ -12,7 +13,7 @@ import com.example.demo.repository.ReviewRepository;
 import com.example.demo.repository.TrackRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.requestClasses.AddReviewerRequest;
-import com.example.demo.requestClasses.StatusChangePaperId;
+import com.example.demo.requestClasses.PaperIdRequest;
 import com.example.demo.service.EmailService;
 import com.example.demo.sqlQueryClasses.PaperStatusCountMap;
 
@@ -143,7 +144,7 @@ public class PaperRestController {
     }
 
     @PostMapping(value="/accept")
-    public ResponseEntity<String> accept(@RequestBody StatusChangePaperId paperIdBody){
+    public ResponseEntity<String> accept(@RequestBody PaperIdRequest paperIdBody){
         Long paperId=paperIdBody.getPaperId();
 
         String status=paperRepository.findById(paperId).get().getStatus();
@@ -158,8 +159,8 @@ public class PaperRestController {
     }
 
     @PostMapping(value="/reject")
-    public ResponseEntity<String> reject(@RequestBody StatusChangePaperId paperIdBody){
-        Long paperId=paperIdBody.getPaperId();
+    public ResponseEntity<String> reject(@RequestBody PaperIdRequest paperIdRequest){
+        Long paperId=paperIdRequest.getPaperId();
 
         String status=paperRepository.findById(paperId).get().getStatus();
 
@@ -170,5 +171,22 @@ public class PaperRestController {
         else{
             return ResponseEntity.badRequest().build();
         }
+    }
+
+    @PostMapping(value="/notify")
+    public ResponseEntity<String> notify(@RequestBody PaperIdRequest paperIdRequest){
+        Long paperId=paperIdRequest.getPaperId();
+
+        List<Review> reviewList=reviewRepository.findByPaper(paperId);
+
+        for(int i1=0;i1<reviewList.size();++i1){
+            if(reviewList.get(i1).getReviewDescription()==null){
+                System.out.println("Lolol");
+                System.out.println(reviewList.get(i1).getAuthor().getEmail());
+                mailSender.sendEmail(reviewList.get(i1).getAuthor().getName(), reviewList.get(i1).getAuthor().getEmail(), "Review Pending", "Pls review lol");
+            }
+        }
+
+        return ResponseEntity.ok("Lol");
     }
 }
