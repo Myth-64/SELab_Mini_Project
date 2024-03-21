@@ -6,7 +6,7 @@ DELETE FROM Papers;
 
 INSERT INTO Users(email,name,password,username) VALUES
 ("1313mithun@gmail.com ","Mithun","$2a$12$9VA5BOGoqgGhn/15NlP9Q.SZ.8Aj8j7PXEf7QoNa9tBLZ8fpImyhW","mithun"),
-("krishnendhu123@gmail.com","Krishnendhu","$2a$12$9VA5BOGoqgGhn/15NlP9Q.SZ.8Aj8j7PXEf7QoNa9tBLZ8fpImyhW","krishnendhu"),
+("krishnendhu1002@gmail.com","Krishnendhu","$2a$12$9VA5BOGoqgGhn/15NlP9Q.SZ.8Aj8j7PXEf7QoNa9tBLZ8fpImyhW","krishnendhu"),
 ("anudeep352@gmail.com","Anudeep","$2a$12$9VA5BOGoqgGhn/15NlP9Q.SZ.8Aj8j7PXEf7QoNa9tBLZ8fpImyhW","anudeep"),
 ("speaker1@gmail.com","Samuel Reynolds","$2a$12$9VA5BOGoqgGhn/15NlP9Q.SZ.8Aj8j7PXEf7QoNa9tBLZ8fpImyhW","speaker1"),
 ("speaker2@gmail.com","Olivia Davis","$2a$12$9VA5BOGoqgGhn/15NlP9Q.SZ.8Aj8j7PXEf7QoNa9tBLZ8fpImyhW","speaker2"),
