@@ -1,24 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import '../assets/styles/AssignModal.css';
 import UserBadge from './UserBadge';
 import { toast } from 'react-toastify';
 import UserListItem from './UserListItem';
+import axios from 'axios';
 
 const AssignModal = ({
   isModalOpen,
   modalContent,
   onClose,
   setModalContent,
+  paperId,
 }) => {
   if (isModalOpen !== true) {
     return null;
   }
+  let map1 = new Map();
+  {
+    modalContent.map((content, index) => {
+      const { name, id } = content;
+      map1.set(name, id);
+    });
+  }
   const [selectedUsers, setSelectedUsers] = useState([]);
+  const [selectedUsersId, setselectedUsersId] = useState([]);
 
-  const handleGroup = (userToAdd) => {
-    console.log('handleGroup');
-    if (selectedUsers.includes(userToAdd)) {
+  useEffect(() => {}, [selectedUsersId]);
+
+  const handleGroup = (userToAdd, userToAddId) => {
+    if (
+      selectedUsers.includes(userToAdd) ||
+      selectedUsersId.includes(userToAddId)
+    ) {
       // toast({
       //   title: 'User already added',
       //   status: 'warning',
@@ -32,12 +46,31 @@ const AssignModal = ({
     }
 
     setSelectedUsers([...selectedUsers, userToAdd]);
+
+    setselectedUsersId([...selectedUsersId, userToAddId]);
     setModalContent(modalContent.filter((x) => !selectedUsers.includes(x)));
-    console.log(modalContent);
   };
   const handleDelete = (delUser) => {
-    console.log('handleDelete');
     setSelectedUsers(selectedUsers.filter((sel) => sel !== delUser));
+    setselectedUsersId(
+      selectedUsersId.filter((sel) => sel !== map1.get(delUser))
+    );
+  };
+
+  const handlesubmit = async () => {
+    const data = {
+      paperId: paperId,
+      username: localStorage.getItem('username'),
+      userIds: selectedUsersId,
+    };
+    try {
+      const resp = await axios.post(
+        'http://localhost:8080/api/papers/addReviewers',
+        data
+      );
+      toast.success(resp.data.message);
+    } catch (error) {}
+    console.log(data);
   };
   //handle submit button that will post reviewer list after selection,onclick closes modal too
 
@@ -58,16 +91,19 @@ const AssignModal = ({
           ))}
         </div>
         {modalContent.map((content, index) => {
-          const { name, status } = content;
+          const { name, status, id } = content;
           return (
             <UserListItem
               key={index}
               name={name}
-              handleFunction={() => handleGroup(name)}
+              id={id}
+              handleFunction={() => handleGroup(name, id)}
             />
           );
         })}
-        <button className="modal-button">Submit </button>
+        <button className="modal-button" onClick={handlesubmit}>
+          Submit{' '}
+        </button>
       </div>
     </section>
   );
