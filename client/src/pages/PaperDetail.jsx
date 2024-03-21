@@ -14,7 +14,7 @@ export const loader = async ({ params }) => {
     );
     const paperdata = await resp.json();
     const review = await fetch(
-      `http://localhost:8080/api/reviews/findByPaper?paperId=${params.paperId}`,
+      `http://localhost:8080/api/reviews/findByPaperCompleted?paperId=${params.paperId}`,
       { method: 'GET' }
     );
     const reviewdata = await review.json();
