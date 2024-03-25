@@ -37,7 +37,8 @@
 .panel button {
   padding: 0.5rem;
   border-radius: 1rem;
-  background-color: #bcd4de;
+  /* background-color: #bcd4de; */
+  background-color: white;
 }
 
 .panel {
