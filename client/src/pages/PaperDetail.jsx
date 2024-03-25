@@ -5,7 +5,6 @@ import AssignModal from '../components/AssignModal';
 import { useLoaderData, useLocation } from 'react-router-dom';
 import CheckModal from '../components/CheckModal';
 import { toast } from 'react-toastify';
-import axios from 'axios';
 
 var paperId_param;
 var reviewlist;
@@ -62,12 +61,7 @@ export const PaperDetail = () => {
   };
 
   const openCheckModal = async (paperId) => {
-    const contentresp = await fetch(
-      `http://localhost:8080/api/reviews/findByPaper?paperId=${paperId_param}`,
-      { method: 'GET' }
-    );
-    const content = await contentresp.json();
-
+    //make openmodal async and fetch information from here
     setIsCheckModalOpen(true);
     setCheckModalContent(content);
   };
@@ -75,20 +69,20 @@ export const PaperDetail = () => {
     setIsModalOpen(false);
   };
   const closeCheckModal = () => {
-    setIsCheckModalOpen(false);
+    setIsModalOpen(false);
   };
 
   const handleaccept = async () => {
     //check for under review status
     //paperId_param
+    console.log(paperId);
     const data = { paperId: paperId_param };
-
+    console.log(data);
     try {
-      const resp = await axios.post('http://localhost:8080/api/papers/accept', {
-        paperId: paperId_param,
-      });
-
-      toast.success('Paper accepted');
+      const resp = await axios.post(
+        'http://localhost:8080/api/papers/accept',
+        data
+      );
     } catch (error) {
       toast.error('Paper cannot be accepted');
     }
@@ -97,7 +91,7 @@ export const PaperDetail = () => {
   const handlereject = async () => {
     //check for under review status
     //paperId_param
-    const data = { paperId: paperId };
+    const data = { paperId: { paperId } };
     try {
       const resp = await axios.post(
         'http://localhost:8080/api/papers/reject',
@@ -105,19 +99,6 @@ export const PaperDetail = () => {
       );
     } catch (error) {
       toast.error('Paper cannot be rejected');
-    }
-  };
-
-  const handlenotifications = async () => {
-    const data = { paperId: paperId };
-    try {
-      const resp = await axios.post(
-        'http://localhost:8080/api/papers/notify',
-        data
-      );
-      toast.success('Sent notifications successfully');
-    } catch (error) {
-      toast.error('Cant send notification');
     }
   };
 
@@ -149,8 +130,7 @@ export const PaperDetail = () => {
           Check reviewers
         </button>
         <button onClick={handleaccept}>Accept</button>
-        <button onClick={handlereject}>Reject</button>
-        <button onClick={handlenotifications}>Remind Reviewers</button>
+        {/* <button onClick={handlereject}>Reject</button> */}
         <section>
           <AssignModal
             isModalOpen={isModalOpen}
@@ -169,12 +149,13 @@ export const PaperDetail = () => {
           />
         </section>
       </div>
+
       <div className="review-outerbox">
         <div className="review-box">
           <h2>Reviews</h2>
           {reviewdata.map((details, index) => {
             const { reviewDescription, author } = details;
-
+            console.log(reviewDescription);
             return (
               <div className="paperdetailbox" key={index}>
                 <h4

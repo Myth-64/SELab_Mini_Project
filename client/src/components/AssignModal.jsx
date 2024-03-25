@@ -63,7 +63,6 @@ const AssignModal = ({
       username: localStorage.getItem('username'),
       userIds: selectedUsersId,
     };
-    console.log(data);
     try {
       const resp = await axios.post(
         'http://localhost:8080/api/papers/addReviewers',

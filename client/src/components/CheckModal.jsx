@@ -25,12 +25,11 @@ const CheckModal = ({
           <IoMdClose onClick={onClose} />
         </div>
         {modalContent.map((content, index) => {
-          const { author, id } = content;
-
+          const { name, status, id } = content;
           return (
             <UserListItem
               key={index}
-              name={author.name}
+              name={name}
               id={id}
               handleFunction={() => handleGroup(name, id)}
             />

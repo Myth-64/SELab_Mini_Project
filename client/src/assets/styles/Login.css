@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .MainElement {
@@ -157,7 +157,7 @@ form .pass-txt {
   text-decoration: underline;
 }
 
-form input[type='submit'] {
+form input[type="submit"] {
   height: 50px;
   margin-top: 30px;
   color: #fff;
@@ -169,6 +169,6 @@ form input[type='submit'] {
   transition: all 0.3s ease;
 }
 
-form input[type='submit']:hover {
+form input[type="submit"]:hover {
   background: #2c52ed;
 }
