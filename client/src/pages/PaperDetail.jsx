@@ -3,8 +3,11 @@ import '../assets/styles/PaperDetails.css';
 import { useState } from 'react';
 import AssignModal from '../components/AssignModal';
 import { useLoaderData, useLocation } from 'react-router-dom';
+import CheckModal from '../components/CheckModal';
+import { toast } from 'react-toastify';
 
 var paperId_param;
+var reviewlist;
 export const loader = async ({ params }) => {
   paperId_param = params.paperId;
   try {
@@ -26,58 +29,15 @@ export const loader = async ({ params }) => {
 
 export const PaperDetail = () => {
   const { paperdata, reviewdata } = useLoaderData();
-  console.log(reviewdata);
+  const paperId = paperId_param;
   const location = useLocation();
-  const paperinformation = {
-    papertitle: 'The insights of ruminal culturomics',
-    paperstatus: 'Pending',
-    author: 'Mike Wazowski',
-    tags: ['historical', 'cultural', 'ethnic', 'ethnic', 'ethnic'],
-  };
-
-  const paperdetails = [
-    {
-      review:
-        '    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      reviewer: 'Pending',
-    },
-    {
-      review:
-        '    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      reviewer: 'Pending',
-    },
-    {
-      review:
-        '    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      reviewer: 'Pending',
-    },
-    {
-      review:
-        '    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      reviewer: 'Pending',
-    },
-  ];
-
-  const assignees = [
-    {
-      name: 'Michael',
-      status: 'Not assigned',
-    },
-    {
-      name: 'Pickford',
-      status: 'Assigned',
-    },
-    {
-      name: 'Bellingham',
-      status: 'Assigned',
-    },
-  ];
-
-  const { papertitle, paperstatus, author, tags } = paperinformation;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCheckModalOpen, setIsCheckModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState('');
+  const [checkModalContent, setCheckModalContent] = useState('');
   const [isreviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [reviewmodalContent, setreviewModalContent] = useState('');
+  const reviewedarray = new Array();
 
   const openModal = async () => {
     //make openmodal async and fetch information from here
@@ -85,18 +45,61 @@ export const PaperDetail = () => {
       `http://localhost:8080/api/papers/getReviewers?paperId=${paperId_param}`,
       { method: 'GET' }
     );
+    reviewedarray.length = 0;
     const content = await contentresp.json();
+    // {
+    //   console.log('hi');
+    //   content.map((e) => {
+    //     const { id } = e;
+    //     reviewedarray.push(id);
+    //   });
+    //   console.log(reviewedarray);
+    // }
+
     setIsModalOpen(true);
     setModalContent(content);
   };
 
-  const fetchreviewers = async (paperId) => {
+  const openCheckModal = async (paperId) => {
     //make openmodal async and fetch information from here
-    setIsReviewModalOpen(true);
-    setreviewModalContent(content);
+    setIsCheckModalOpen(true);
+    setCheckModalContent(content);
   };
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+  const closeCheckModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleaccept = async () => {
+    //check for under review status
+    //paperId_param
+    console.log(paperId);
+    const data = { paperId: paperId_param };
+    console.log(data);
+    try {
+      const resp = await axios.post(
+        'http://localhost:8080/api/papers/accept',
+        data
+      );
+    } catch (error) {
+      toast.error('Paper cannot be accepted');
+    }
+  };
+
+  const handlereject = async () => {
+    //check for under review status
+    //paperId_param
+    const data = { paperId: { paperId } };
+    try {
+      const resp = await axios.post(
+        'http://localhost:8080/api/papers/reject',
+        data
+      );
+    } catch (error) {
+      toast.error('Paper cannot be rejected');
+    }
   };
 
   return (
@@ -119,29 +122,30 @@ export const PaperDetail = () => {
         </div>
       </div>
       <div className="panel">
-        <button onClick={() => openModal(assignees)}>Assign reviewers</button>
+        <button onClick={() => openModal()}>Assign reviewers</button>
         <button
           //make this button fetch reviewer info
-          onClick={() => fetchreviewers(paperId)}
+          onClick={() => openCheckModal(paperId)}
         >
           Check reviewers
         </button>
-        <button>Accept</button>
-        <button>Reject</button>
+        <button onClick={handleaccept}>Accept</button>
+        {/* <button onClick={handlereject}>Reject</button> */}
         <section>
           <AssignModal
             isModalOpen={isModalOpen}
             modalContent={modalContent}
             onClose={closeModal}
             setModalContent={setModalContent}
+            paperId={paperId}
           />
         </section>
         <section>
-          <AssignModal
-            isModalOpen={isModalOpen}
-            modalContent={modalContent}
-            onClose={closeModal}
-            setModalContent={setModalContent}
+          <CheckModal
+            isModalOpen={isCheckModalOpen}
+            modalContent={checkModalContent}
+            onClose={closeCheckModal}
+            setModalContent={setCheckModalContent}
           />
         </section>
       </div>

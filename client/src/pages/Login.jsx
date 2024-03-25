@@ -18,6 +18,8 @@ const Login = () => {
         credentials
       );
       toast.success('login success');
+
+      localStorage.setItem('username', credentials.username);
       localStorage.setItem('token', resp.data);
       setUser(credentials.username);
       console.log('yes');
