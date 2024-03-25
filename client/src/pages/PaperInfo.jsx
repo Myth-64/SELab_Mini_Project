@@ -43,13 +43,13 @@ const paperdetails = [
   },
 ];
 
-const statusMap =  new Map([
-  ["UNASSIGNED","Unassigned"],
-  ["UNDER_REVIEW","Under Review"],
-  ["COMPLETED_REVIEW","Completed Review"],
-  ["ACCEPTED","Accepted"],
-  ["REJECTED","Rejected"]
-])
+const statusMap = new Map([
+  ['UNASSIGNED', 'Unassigned'],
+  ['UNDER_REVIEW', 'Under Review'],
+  ['COMPLETED_REVIEW', 'Completed Review'],
+  ['ACCEPTED', 'Accepted'],
+  ['REJECTED', 'Rejected'],
+]);
 
 const PaperInfo = () => {
   const response = useLoaderData();
@@ -76,6 +76,26 @@ const PaperInfo = () => {
       </div>
       {response.map((paper) => {
         const { paperId, title, status } = paper;
+        var color;
+        switch (status) {
+          case 'UNASSGINED':
+            color = 'grey';
+            break;
+          case 'COMPLETED_REVIEW':
+            color = 'orange';
+            break;
+          case 'UNDER_REVIEW':
+            color = 'yellow';
+            break;
+          case 'ACCEPTED':
+            color = 'green';
+            break;
+          case 'REJECTED':
+            color = 'red';
+            break;
+          default:
+        }
+
         return (
           <div className="paperinfobox">
             <h4
@@ -84,10 +104,8 @@ const PaperInfo = () => {
             >
               {title}
             </h4>
-            <div className={status == 'REJECTED' ? 'red box' : 'green box'}>
-              <div style={{'color':'white'}}>
-                {statusMap.get(status)}
-              </div>
+            <div className={'box'} style={{ backgroundColor: color }}>
+              <div style={{ color: 'white' }}>{statusMap.get(status)}</div>
             </div>
           </div>
         );
