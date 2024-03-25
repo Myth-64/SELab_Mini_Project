@@ -138,8 +138,6 @@ public class PaperRestController {
         }
         reviewRepository.flush();
 
-        // mailSender.sendEmail("Krishnendhu","krishnendhu1002@gmail.com","Sup","🔥🔥");
-
         return ResponseEntity.ok("Lol");
     }
 
@@ -181,9 +179,9 @@ public class PaperRestController {
 
         for(int i1=0;i1<reviewList.size();++i1){
             if(reviewList.get(i1).getReviewDescription()==null){
-                System.out.println("Lolol");
-                System.out.println(reviewList.get(i1).getAuthor().getEmail());
-                mailSender.sendEmail(reviewList.get(i1).getAuthor().getName(), reviewList.get(i1).getAuthor().getEmail(), "Review Pending", "Pls review lol");
+                String recipientName=reviewList.get(i1).getAuthor().getName();
+                String recipientMail=reviewList.get(i1).getAuthor().getEmail();
+                mailSender.sendEmail(recipientName,recipientMail,"Review Pending","Pls review lol");
             }
         }
 
