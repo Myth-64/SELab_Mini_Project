@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 body {
   margin: 0;
   padding: 0;
   background-color: #e6e6e6;
   color: #342e37;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Montserrat', sans-serif;
 }
 ::selection {
   color: #342e37;
@@ -73,8 +74,8 @@ body {
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
   box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
-  background-color: #2B3244;
-  background-image: linear-gradient(to right, #222831 , #31363F);
+  background-color: #2b3244;
+  background-image: linear-gradient(to right, #222831, #31363f);
 }
 
 .sidebar-title {
@@ -172,18 +173,18 @@ body {
 }
 
 .card:nth-child(2) {
-  background-image: linear-gradient(-30deg, #ff9bd0, #FF3EA5);
+  background-image: linear-gradient(-30deg, #ff9bd0, #ff3ea5);
 }
 
 .card:nth-child(3) {
-  background-image: linear-gradient(-30deg, #a97ed2, #6420AA);
+  background-image: linear-gradient(-30deg, #a97ed2, #6420aa);
 }
 
 .card:nth-child(4) {
-  background-image: linear-gradient(-30deg, #afd7e1, #7FC7D9);
+  background-image: linear-gradient(-30deg, #afd7e1, #7fc7d9);
 }
 .card:nth-child(5) {
-  background-image: linear-gradient(-30deg, #fdbb91, #E36414);
+  background-image: linear-gradient(-30deg, #fdbb91, #e36414);
 }
 .card-inner {
   display: flex;
