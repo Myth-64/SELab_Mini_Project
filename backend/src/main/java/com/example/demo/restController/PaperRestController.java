@@ -174,6 +174,7 @@ public class PaperRestController {
     @PostMapping(value="/notify")
     public ResponseEntity<String> notify(@RequestBody PaperIdRequest paperIdRequest){
         Long paperId=paperIdRequest.getPaperId();
+        String paperTitle=paperRepository.findById(paperId).get().getTitle();
 
         List<Review> reviewList=reviewRepository.findByPaper(paperId);
 
@@ -181,7 +182,7 @@ public class PaperRestController {
             if(reviewList.get(i1).getReviewDescription()==null){
                 String recipientName=reviewList.get(i1).getAuthor().getName();
                 String recipientMail=reviewList.get(i1).getAuthor().getEmail();
-                mailSender.sendEmail(recipientName,recipientMail,"Review Pending","Pls review lol");
+                mailSender.sendEmail(recipientName,recipientMail,"Review Pending","Your review of the paper"+paperTitle+"is pending");
             }
         }
 
