@@ -138,7 +138,7 @@ public class PaperRestController {
         }
         reviewRepository.flush();
 
-        return ResponseEntity.ok("Lol");
+        return ResponseEntity.ok("Added reviewers successfully");
     }
 
     @PostMapping(value="/accept")
@@ -186,6 +186,6 @@ public class PaperRestController {
             }
         }
 
-        return ResponseEntity.ok("Lol");
+        return ResponseEntity.ok("Mails sent successfully");
     }
 }
