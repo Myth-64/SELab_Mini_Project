@@ -115,9 +115,10 @@ export const PaperDetail = () => {
         'http://localhost:8080/api/papers/notify',
         data
       );
+      console.log(resp);
       toast.success('Sent notifications successfully');
     } catch (error) {
-      toast.error('Cant send notification');
+      toast.error('No one to notify :(');
     }
   };
 
