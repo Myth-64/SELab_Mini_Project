@@ -178,14 +178,21 @@ public class PaperRestController {
 
         List<Review> reviewList=reviewRepository.findByPaper(paperId);
 
+        int count=0;
         for(int i1=0;i1<reviewList.size();++i1){
             if(reviewList.get(i1).getReviewDescription()==null){
                 String recipientName=reviewList.get(i1).getAuthor().getName();
                 String recipientMail=reviewList.get(i1).getAuthor().getEmail();
-                mailSender.sendEmail(recipientName,recipientMail,"Review Pending","Your review of the paper"+paperTitle+"is pending");
+                mailSender.sendEmail(recipientName,recipientMail,"Review Pending","Your review of the paper "+paperTitle+" is pending");
+                ++count;
             }
         }
 
-        return ResponseEntity.ok("Mails sent successfully");
+        if(count==0){
+            return ResponseEntity.noContent().build();
+        }
+        else{
+            return ResponseEntity.ok("Mails sent successfully");
+        }
     }
 }
