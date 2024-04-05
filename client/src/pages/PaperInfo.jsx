@@ -78,14 +78,14 @@ const PaperInfo = () => {
         const { paperId, title, status } = paper;
         var color;
         switch (status) {
-          case 'UNASSGINED':
-            color = 'grey';
+          case 'UNASSIGNED':
+            color = 'blue';
             break;
           case 'COMPLETED_REVIEW':
             color = 'orange';
             break;
           case 'UNDER_REVIEW':
-            color = 'yellow';
+            color = 'violet';
             break;
           case 'ACCEPTED':
             color = 'green';
