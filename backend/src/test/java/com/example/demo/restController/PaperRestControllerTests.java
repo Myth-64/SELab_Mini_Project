@@ -314,6 +314,6 @@ public class PaperRestControllerTests {
 
         ResponseEntity<String> currentResult=paperRestController.notify(paperIdRequest);
 
-        assertEquals(ResponseEntity.noContent().build(), currentResult);
+        assertEquals(ResponseEntity.notFound().build(), currentResult);
     }
 }
