@@ -1,7 +1,7 @@
 .landing-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 0.75fr 1fr;
+  grid-template-rows: 0.4fr 0.3fr 1fr;
   grid-template-areas:
     'top top top top'
     'about about about about'
@@ -49,6 +49,7 @@
 }
 .about-content {
   padding: 6rem;
+  padding-left: 2.8rem;
 }
 .about-text {
   padding: 2rem;
@@ -64,11 +65,16 @@
     'title title'
     'first first'
     'second second';
+  width: 100vw;
+  padding: 3rem;
+}
+.landing-speakers h1 {
+  font-size: 3rem;
 }
 .speakersectiontitle {
   grid-area: title;
   padding: 1rem;
-  padding-bottom: 2rem;
+  padding-bottom: 3rem;
   font-size: 3rem;
   text-decoration: underline;
   text-underline-position: under;
@@ -79,13 +85,14 @@
   grid-area: first;
   display: flex;
   padding-left: 3rem;
-  padding-right: 3 rem;
+  padding-right: 3rem;
+  padding-bottom: 5rem;
 }
 .secondspeaker {
   grid-area: second;
   display: flex;
   padding: 2rem;
-  padding-left: 30rem;
+  padding-left: 19vw;
 }
 .landing-title {
   color: red;

@@ -189,7 +189,7 @@ public class PaperRestController {
         }
 
         if(count==0){
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.notFound().build();
         }
         else{
             return ResponseEntity.ok("Mails sent successfully");
