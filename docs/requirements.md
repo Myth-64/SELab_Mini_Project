@@ -26,7 +26,7 @@ Include a visually appealing layout with images, brief bios, and affiliations of
 
 #### 2. User Authentication and Authorization
 
-- Secure username/password or OAuth authentication for program committee members.
+- Secure username/password for program committee members.
 - Role-based access control to restrict unauthorized access to the review interface.
 - Display "invalid" error message on failed login attempts.
 
