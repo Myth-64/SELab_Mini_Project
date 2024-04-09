@@ -34,7 +34,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/StatusChangePaperId'
+              $ref: '#/components/schemas/PaperIdRequest'
         required: true
       responses:
         '200':
@@ -70,7 +70,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/StatusChangePaperId'
+              $ref: '#/components/schemas/PaperIdRequest'
         required: true
       responses:
         '200':
@@ -330,9 +330,27 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/PaperStatusCountMap'
+  /papers/notify:
+    post:
+      tags:
+        - Papers
+      operationId: notify
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaperIdRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
 components:
   schemas:
-    StatusChangePaperId:
+    PaperIdRequest:
       type: object
       properties:
         paperId:

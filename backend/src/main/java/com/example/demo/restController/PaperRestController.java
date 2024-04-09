@@ -175,9 +175,9 @@ public class PaperRestController {
     public ResponseEntity<String> notify(@RequestBody PaperIdRequest paperIdRequest){
         Long paperId=paperIdRequest.getPaperId();
         String paperTitle=paperRepository.findById(paperId).get().getTitle();
-
+        
         List<Review> reviewList=reviewRepository.findByPaper(paperId);
-
+        
         int count=0;
         for(int i1=0;i1<reviewList.size();++i1){
             if(reviewList.get(i1).getReviewDescription()==null){
@@ -187,7 +187,7 @@ public class PaperRestController {
                 ++count;
             }
         }
-
+        
         if(count==0){
             return ResponseEntity.notFound().build();
         }
